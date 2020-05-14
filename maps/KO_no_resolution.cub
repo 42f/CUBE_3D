@@ -1,0 +1,18 @@
+
+S ./assets/N.png
+
+NO ./assets/N.png
+SO ./assets/S.png
+EA ./assets/E.png
+WE ./assets/W.png
+
+F 220,100,0
+C 225,30,0
+
+1111111
+1000001
+1010001
+1000001
+1000001
+100N001
+1111111

@@ -1,0 +1,116 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_exit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
+/*   Updated: 2020/05/14 11:50:54 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include "cub3d.h"
+
+void	ft_free_grid(t_data *data, int **grid)
+{
+	int		i;
+
+	i = 0;
+	while (i < data->map->y)
+	{
+		free(grid[i]);
+		i++;
+	}
+	free(grid);
+}
+
+static void	ft_print_error(t_data *data, int ret)
+{
+	if (ret == FALSE)
+		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 53);
+	else if (ret == ERROR_MALLOC || ret == ERROR_MALLOC_IM)
+		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 34);
+	else if (ret == ERROR_TEXTURE_IMPORT)
+		write(1, "\033[0;31mError\nCAN'T IMPORT TEXTURE  \033[0m\n\n", 40);
+	else if (ret == ERROR_PLAYER)
+		write(1, "\033[0;31mError\nPLAYER ERROR    \033[0m\n\n", 34);
+	else if (ret == ERROR_MAP)
+		write(1, "\033[0;31mError\nMAP NOT CORRECT \033[0m\n\n", 34);
+	else if (data->map->set == ERROR_MAP)
+		write(1, "\033[0;31mError\nCUB FILE WRONG  \033[0m\n\n", 34);
+	else if (data->map->set == ERROR_MALLOC)
+		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 34);
+	else if (ret == ERROR_MLX)
+		write(1, "\033[0;31mError\nISSUE WITH MLX  \033[0m\n\n", 34);
+	else if (ret == ERROR_FILE)
+		write(1, "\033[0;31mError\nCANNOT OPEN CUB \033[0m\n\n", 34);
+	else if (ret == ERROR_TEXTURE)
+		write(1, "\033[0;31mError\nISSUE W/ TEXTURE\033[0m\n\n", 34);
+	else if (ret == ERROR_EXPORT)
+		write(1, "\033[0;31mError\nCOULD NOT EXPORT\033[0m\n\n", 34);
+	else if (ret != TRUE)
+		write(1, "\033[0;31mError\nCUB FILE FAULTY \033[0m\n\n", 34);
+}
+
+void	ft_free_sprites(t_data *data, int i)
+{
+	while (i >= 0)
+	{
+		free(data->map->sp[i]);
+		i--;
+	}
+	free(data->map->sp);
+}
+
+void	ft_free_textures(t_data *data)
+{
+	free(data->img[NO]);
+	free(data->img[SO]);
+	free(data->img[EA]);
+	free(data->img[WE]);
+	free(data->img[SP]);
+	free(data->img[VIEW]);
+	free(data->img[SP_VIEW]);
+	free(data->img[BG]);
+}
+
+int		ft_free_all(t_data *data, int ret)
+{
+//debug_printdata(data, 1);
+//debug_printgrid(data, data->map->grid);
+	ft_print_error(data, ret);
+	if (ret == TRUE || ret == ERROR_EXPORT)
+		ft_free_textures(data);
+	if (ret != ERROR_MALLOC && ret != ERROR_FILE)
+	{
+		if (data != NULL && data->map != NULL)
+			ft_free_sprites(data, data->map->sp_qty - 1);
+		if (data != NULL && data->files != NULL)
+		{
+			free(data->files->sp_path);
+			free(data->files->no_path);
+			free(data->files->we_path);
+			free(data->files->ea_path);
+			free(data->files->so_path);
+		}
+		if (data != NULL && data->map->grid != NULL)
+			ft_free_grid(data, data->map->grid);
+		if (data != NULL)
+		{
+			free(data->map);
+			free(data->player);
+			free(data->res);
+			free(data->files);
+			free(data->colors);
+			free(data->win);
+			free(data->img);
+			free(data);
+		}
+	}
+//	system("leaks a.out");
+	exit (TRUE);
+	return (0);
+}
+

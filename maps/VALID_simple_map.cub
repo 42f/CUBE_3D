@@ -1,0 +1,20 @@
+
+R 800 500 
+
+S ./assets/large_N.png
+
+NO ./assets/large_N.png
+SO ./assets/large_S.png
+EA ./assets/large_E.png
+WE ./assets/large_W.png
+
+F 75, 75, 75 
+C 160, 75, 75
+
+1111111
+1S11001
+1000001
+1000001
+1001001
+1000001
+1111111

@@ -1,0 +1,18 @@
+
+R 1000 1000 
+
+S ./assets/N.png
+
+NO ./assets/large_N.png
+SO ./assets/large_S.png
+EA ./assets/large_E.png
+WE ./assets/large_W.png
+
+F 75, 75, 75 
+C 75, 75, 75
+
+11110
+10001
+10N01
+10001
+11111

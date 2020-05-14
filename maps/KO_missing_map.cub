@@ -1,0 +1,12 @@
+
+R 800 480
+
+S ./assets/N.png
+
+NO ./assets/N.png
+SO ./assets/S.png
+EA ./assets/E.png
+WE ./assets/W.png
+
+F 220,100,0
+C 225,30,0

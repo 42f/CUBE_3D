@@ -1,0 +1,24 @@
+
+R 800 500 
+
+S ./assets/blank_SP.png
+
+NO ./assets/brick_64/N.png
+SO ./assets/brick_64/S.png
+EA ./assets/brick_64/E.png
+WE ./assets/brick_64/W.png
+
+F 175, 75, 75 
+C 75, 75, 75
+
+111111111
+102000001
+102000001
+100001201
+100000001
+100001001
+1E0002001
+100002001
+100001001
+100000001
+111111111
