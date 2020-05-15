@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:13:10 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/14 16:47:42 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/15 15:13:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ static int		ft_standard_rotation(t_data *data, int key)
 int		ft_escape(t_data *data)
 {
 //		debug_printdata(data, 88);
-		mlx_destroy_window(data->win->mlx_ptr, data->win->win_ptr);
 		ft_free_all(data, TRUE);
-		system("leaks a.out");
-		exit (TRUE);
+		return (0);
+//		system("leaks a.out");
+//		exit (TRUE);
 }
 
 int		ft_key_manager(int key, void *param)
 {
 	t_data		*data;
 	int			ret;
-printf("key == %d\n", key);
+	
 	ret = TRUE;
 	data = (t_data *)param;
 	mlx_mouse_show(data->win->mlx_ptr, data->win->win_ptr);

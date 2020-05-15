@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 12:26:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/15 15:33:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,23 @@ void	ft_free_textures(t_data *data)
 
 int		ft_free_all(t_data *data, int ret)
 {
-//debug_printdata(data, 1);
-//debug_printgrid(data, data->map->grid);
 	ft_print_error(data, ret);
-	if (ret == TRUE || ret == ERROR_EXPORT)
-		ft_free_textures(data);
 	if (ret != ERROR_MALLOC && ret != ERROR_FILE)
 	{
+		if (data != NULL)
+		{	
+			mlx_destroy_image(data->win->mlx_ptr, data->img[NO]->ptr);
+			mlx_destroy_image(data->win->mlx_ptr, data->img[SO]->ptr);
+			mlx_destroy_image(data->win->mlx_ptr, data->img[EA]->ptr);
+			mlx_destroy_image(data->win->mlx_ptr, data->img[WE]->ptr);
+			mlx_destroy_image(data->win->mlx_ptr, data->img[SP]->ptr);
+			mlx_destroy_image(data->win->mlx_ptr, data->img[SP_VIEW]->ptr);
+			mlx_destroy_image(data->win->mlx_ptr, data->img[VIEW]->ptr);
+			mlx_destroy_image(data->win->mlx_ptr, data->img[BG]->ptr);
+			mlx_destroy_window(data->win->mlx_ptr, data->win->win_ptr);
+		}
+		if (ret == TRUE || ret == ERROR_EXPORT)
+			ft_free_textures(data);
 		if (data != NULL && data->map != NULL)
 			ft_free_sprites(data, data->map->sp_qty - 1);
 		if (data != NULL && data->files != NULL)
@@ -109,8 +119,6 @@ int		ft_free_all(t_data *data, int ret)
 			free(data);
 		}
 	}
-//	system("leaks a.out");
-	exit (TRUE);
-	return (0);
+	exit (0);
 }
 

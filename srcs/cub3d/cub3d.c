@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/14 16:46:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/15 16:21:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ static void		ft_img_init(t_data *data)
 	data->img[SP_VIEW]->ptr = mlx_new_image(win->mlx_ptr, res.x, res.y);
 	data->img[SP_VIEW]->data = (int *)mlx_get_data_addr(data->img[SP_VIEW]->ptr,
 		&data->img[SP_VIEW]->bpp, &data->img[SP_VIEW]->size_line, &win->endian);
-	data->img[SP_VIEW]->bpp >>= 3;
+	data->img[SP_VIEW]->bpp /= 8;
 	data->img[SP_VIEW]->size_line /= data->img[SP_VIEW]->bpp;
 	data->img[VIEW]->ptr = mlx_new_image(win->mlx_ptr, res.x, res.y);
 	data->img[VIEW]->data = (int *)mlx_get_data_addr(data->img[VIEW]->ptr,
 			&data->img[VIEW]->bpp, &data->img[VIEW]->size_line, &win->endian);
-	data->img[VIEW]->bpp >>= 3;
+	data->img[VIEW]->bpp /= 8;
 	data->img[VIEW]->size_line /= data->img[VIEW]->bpp;
 	data->img[BG]->ptr = mlx_new_image(win->mlx_ptr, res.x, res.y);
 	data->img[BG]->data = (int *)mlx_get_data_addr(data->img[BG]->ptr,
 			&data->img[BG]->bpp, &data->img[BG]->size_line, &win->endian);
-	data->img[BG]->bpp >>= 3;
+	data->img[BG]->bpp /= 8;
 	data->img[BG]->size_line /= data->img[BG]->bpp;
 }
 
