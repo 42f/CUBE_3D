@@ -4,8 +4,8 @@ CC			= clang
 INC			= includes
 LIBFT_DIR	:= ./libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
-MLX_DIR		:= ./minilibx-linux/
-LIBMLX		:= $(MLX_DIR)libmlx_Linux.a
+MLX_DIR		:= ./minilibx-Linux/
+LIBMLX		:= $(MLX_DIR)libmlx.a
 
 CFLAGS		+= -Wall
 CFLAGS		+= -Werror
@@ -52,7 +52,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 HEADER	=	$(INC)/libft.h
 HEADER	+=	$(INC)/cub3d.h
-HEADER	+=	$(MLX_DIR)/mlx.h
+HEADER	+=	$(INC)/mlx.h
 
 all:  $(NAME) 
 

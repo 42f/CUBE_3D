@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/10 11:37:28 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/15 12:33:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,20 @@ int 		main(int ac, char **av)
 	
 	data = NULL;
 	ret = FALSE;
-	if (ac == 2 || (ac == 3 && ft_memcmp(av[2], "--save", 6) == 0))
+	if (ac == 1 || ac > 3 || (ac == 3 && ft_memcmp(av[2], "--save", 6) != 0))
 	{
-		data = malloc(sizeof(t_data));
-		if (data != NULL)
-			ret = ft_struct_init(data); 
-		if (ret == TRUE)
-		{
-			data->files->cub_path = av[1];
-			ret = ft_execute(data, ac);
-		}
+		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 46);
+		return (0);
 	}
-	if (ac >= 2 && data == NULL)
+	data = malloc(sizeof(t_data));
+	if (data != NULL)
+		ret = ft_struct_init(data); 
+	if (ret == TRUE)
+	{
+		data->files->cub_path = av[1];
+		ret = ft_execute(data, ac);
+	}
+	if (data == NULL)
 		ret = ERROR_MALLOC;
 	ft_free_all(data, ret);
 	return (0);

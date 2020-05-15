@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/14 11:50:54 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/15 12:26:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_free_grid(t_data *data, int **grid)
 static void	ft_print_error(t_data *data, int ret)
 {
 	if (ret == FALSE)
-		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 53);
+		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 46);
 	else if (ret == ERROR_MALLOC || ret == ERROR_MALLOC_IM)
 		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 34);
 	else if (ret == ERROR_TEXTURE_IMPORT)
