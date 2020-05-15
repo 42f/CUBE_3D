@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 16:42:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/15 18:41:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,20 +131,19 @@ int			ft_render_view(t_data *data)
 	ft_render_walls(data);
 	ret = ft_render_sprite(data);
 
-	ft_imgset(data->img[BG]->data, 0x00FF0000,
+/*	ft_imgset(data->img[BG]->data, 0x00FF0000,
 									data->img[BG]->size_line * data->res->y);
 	ft_imgset(data->img[VIEW]->data, 0x00000000,
 									data->img[VIEW]->size_line * data->res->y);
 	ft_imgset(data->img[SP_VIEW]->data, 0xFF000000,
 								data->img[SP_VIEW]->size_line * data->res->y);
-
+*/
 //	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
 //													data->img[BG]->ptr, 0, 0);
-//	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-//													data->img[VIEW]->ptr, 0, 0);
-
-	ft_imgset(data->img[SP]->data, GREEN, 0);
 	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-												data->img[SP]->ptr, 10, 10);
+													data->img[VIEW]->ptr, 0, 0);
+
+	if (ret != TRUE)
+		ft_free_all(data, ret);
 	return (ret);
 }

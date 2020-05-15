@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 14:02:48 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/10 15:06:13 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/15 17:40:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,8 +213,8 @@ static void	ft_put_pixel(t_data *data, double dist, int x, int y, int cursor)
 	y = fmod(y ,UNIT);
 	cursor_color = ft_pos(x, y, data->img[SP]->size_line);
  	color = data->img[SP]->data[cursor_color];
-	if (!(color & 0xFF000000))
-		data->img[SP_VIEW]->data[cursor] = color;
+	if (color != 0)
+		data->img[VIEW]->data[cursor] = color;
 }
 
 
@@ -234,7 +234,7 @@ static void		ft_fill_column(t_data *data, int col, t_sprite sp, int index)
 	coord.x /= (sp.index_out - sp.index_in);
 	while (coord.y < y_end)
 	{
-		cursor = ft_pos(col, coord.y, data->img[SP_VIEW]->size_line);
+		cursor = ft_pos(col, coord.y, data->img[VIEW]->size_line);
 		ft_put_pixel(data, sp.height, coord.x, coord.y - y_offset, cursor);
 		coord.y++;
 	}

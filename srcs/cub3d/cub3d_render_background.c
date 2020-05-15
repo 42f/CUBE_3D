@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:00:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/10 14:56:12 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/15 17:37:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	ft_set_floor(t_data *data, int y_floor)
 			shade = (0xFF * (y_floor / (double)half_screen));
 			color |= (shade << 24);
 		}
-		ft_imgset(&data->img[BG]->data[y * data->img[BG]->size_line],
-											color, data->img[BG]->size_line);
+		ft_imgset(&data->img[VIEW]->data[y * data->img[VIEW]->size_line],
+											color, data->img[VIEW]->size_line);
 		y_floor--;
 		y++;
 	}
@@ -53,8 +53,8 @@ static void	ft_set_ceiling(t_data *data, int *y_floor)
 			shade = (0xFF * (y / (double)half_screen));
 			color |= (shade << 24);
 		}
-		ft_imgset(&data->img[BG]->data[y * data->img[BG]->size_line],
-											color, data->img[BG]->size_line);
+		ft_imgset(&data->img[VIEW]->data[y * data->img[VIEW]->size_line],
+											color, data->img[VIEW]->size_line);
 		y++;
 	}
 	*y_floor = y;

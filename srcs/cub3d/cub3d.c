@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 16:21:14 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/15 18:40:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static int		ft_mlx_init(t_data *data)
 	win->win_ptr = mlx_new_window(win->mlx_ptr, res.x, res.y, "Cub3d");
 	if (win->win_ptr == NULL)
 		return (ERROR_MLX);
-//	mlx_hook(win->win_ptr, 6, (1L<<0), ft_mouse_manager, data);
+	mlx_loop_hook(win->mlx_ptr, ft_render_view, data);
+	mlx_hook(win->win_ptr, 6, (1L<<0), ft_mouse_manager, data);
 	mlx_hook(win->win_ptr, 2, (1L<<0), ft_key_manager, data);
 	mlx_hook(win->win_ptr, 17, (1L<<2), ft_escape, data);
 	return (TRUE);
