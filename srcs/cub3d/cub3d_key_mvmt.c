@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 14:17:17 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/10 14:58:57 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/16 12:31:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ int				ft_movement_dispatch(t_data *data, int key)
 {
 	int			factor;
 	int			alpha;
-	t_player	player_before;
 
-	player_before.x = data->player->x;
-	player_before.y = data->player->y;
-	player_before.a = data->player->a;
 	factor = MOVEMENT_FACTOR;
 	if (key == A_KEY || key == S_KEY || key == D_KEY || key == W_KEY)
 	{
@@ -68,8 +64,5 @@ int				ft_movement_dispatch(t_data *data, int key)
 	}
 	else if (key == LEFT_ARROW || key == RIGHT_ARROW)
 		ft_rotation(data, key, factor);
-	if (player_before.x != data->player->x || player_before.y != data->player->y
-										||	player_before.a != data->player->a)
-		return (ft_render_view(data));
 	return (TRUE);
 }

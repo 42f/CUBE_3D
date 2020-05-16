@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 12:33:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 14:19:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void		ft_struct_values(t_data *data)
 	data->colors->c_color = -1;
 	data->player->x = -1;
 	data->player->y = -1;
+	data->stop_flag = FALSE;
+
 }
 
 static int		ft_struct_failure(t_data *data, int failure)
@@ -81,13 +83,13 @@ static int		ft_struct_init(t_data *data)
 	return (TRUE);
 }
 
-static int	ft_execute(t_data *data, int ac)
+static int	ft_execute(t_data *data, short export_flag)
 {
 	int		ret;
 
 	ret = ft_parser(data);
 	if (ret == TRUE)
-		ret = ft_cub3d(data, ac == 3);
+		ret = ft_cub3d(data, export_flag);
 	return (ret);
 }
 
@@ -104,15 +106,18 @@ int 		main(int ac, char **av)
 		return (0);
 	}
 	data = malloc(sizeof(t_data));
-	if (data != NULL)
-		ret = ft_struct_init(data); 
-	if (ret == TRUE)
-	{
-		data->files->cub_path = av[1];
-		ret = ft_execute(data, ac);
-	}
 	if (data == NULL)
-		ret = ERROR_MALLOC;
-	ft_free_all(data, ret);
-	return (0);
+	{
+		write(1, "\033[0;31mError\nMalloc failed              \033[0m\n\n", 46);
+		return (0);
+	}
+	ret = ft_struct_init(data); 
+	if (ret != TRUE)
+	{
+		write(1, "\033[0;31mError\nMalloc failed              \033[0m\n\n", 46);
+		return (0);
+	}
+	data->files->cub_path = av[1];
+	ret = ft_execute(data, ac == 3);
+	return (ret);
 }

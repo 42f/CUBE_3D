@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 15:33:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 13:09:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ int		ft_free_all(t_data *data, int ret)
 			free(data);
 		}
 	}
-	exit (0);
+	return (ret);
 }
 

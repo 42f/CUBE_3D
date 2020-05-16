@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 11:25:21 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 13:11:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,15 @@ static int		ft_mlx_init(t_data *data)
 	win->win_ptr = mlx_new_window(win->mlx_ptr, res.x, res.y, "Cub3d");
 	if (win->win_ptr == NULL)
 		return (ERROR_MLX);
-//	mlx_loop_hook(win->mlx_ptr, ft_render_view, data);
+	mlx_do_key_autorepeaton(data->win->mlx_ptr);
+	mlx_loop_hook(win->mlx_ptr, ft_loop, data);
 	mlx_hook(win->win_ptr, 6, (1L<<0), ft_mouse_manager, data);
-	mlx_hook(win->win_ptr, 2, (1L<<0), ft_key_manager, data);
+	mlx_hook(win->win_ptr, 2, (1L<<0), ft_key_hook, data);
 	mlx_hook(win->win_ptr, 17, (1L<<2), ft_escape, data);
 	return (TRUE);
 }
 
-int		ft_cub3d(t_data *data, int export_flag)
+int		ft_cub3d(t_data *data, short export_flag)
 {
 	int			ret;
 	
@@ -122,15 +123,19 @@ int		ft_cub3d(t_data *data, int export_flag)
 	ret = ft_import_textures(data);
 	if (ret != TRUE)
 		return (ret);
-
-	// attention : utiliser ecran accueil PRESS KEY TO START pour eviter de gerer le return de render_view ici
-	//mlx_string_put(data->win->mlx_ptr, data->win->win_ptr, data->res->x / 2 - 70, data->res->y / 2, RED, "Press key to start");
-//	debug_printdata(data, 8);
-	mlx_do_key_autorepeaton(data->win->mlx_ptr);
-	ft_render_view(data);
 	if (export_flag == TRUE)
+	{
+		ft_render_view(data);
 		ret = ft_save_to_file(data);
+	}
 	else
-		mlx_loop(data->win->mlx_ptr);
+	{
+		mlx_string_put(data->win->mlx_ptr, 
+				data->win->win_ptr, data->res->x / 2 - 70, data->res->y / 2, 
+											RED, "Press any key to start");
+		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr, 
+			data->img[SP]->ptr,	data->res->x / 2 - 32, data->res->y / 2 + 32); 
+		ret = mlx_loop(data->win->mlx_ptr);
+	}
 	return (ret);
 }

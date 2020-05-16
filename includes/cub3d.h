@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 18:34:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 14:16:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@
 #define UNIT						64	
 #define MINIMAL_DIST				24	
 #define MOVEMENT_FACTOR				9						
-#define SHADOW						FALSE	
+#define SHADOW						TRUE	
 #define SHADOW_DEPTH				150
 #define MOUSE						FALSE
 
@@ -267,7 +267,9 @@ typedef struct	s_data
 	t_player	*player;
 	t_files		*files;
 	t_img		**img;
+	int			stop_flag;
 }				t_data;
+
 
 /*
 ** PARSER
@@ -287,7 +289,7 @@ int				ft_is_mapdata(char *line);
 */
 
 int				ft_movement_dispatch(t_data *data, int key);
-int				ft_key_manager(int key, void *param);
+int				ft_key_hook(int key, t_data *data);
 int				ft_mouse_manager(int x, int y, void *param);
 int				ft_escape(t_data *data);
 
@@ -295,9 +297,10 @@ int				ft_escape(t_data *data);
 ** RENDERING 
 */
 
-int				ft_cub3d(t_data *data, int export_flag);
+int				ft_loop(t_data* data);
+int				ft_cub3d(t_data *data, short export_flag);
 int				ft_render_view(t_data *data);
-void			ft_render_background(t_data *data);
+void			ft_render_background(t_data *data, int x, int y_wallstart, int y_wallend);
 int				ft_render_sprite(t_data *data);
 int				ft_import_textures(t_data *data);
 
