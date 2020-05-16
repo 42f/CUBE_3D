@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 15:38:24 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 18:19:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "mlx.h"
 #include <math.h>
 
-static int	ft_get_pixel(t_data *data, t_intersect wall, int x, int y, int shade)
+static int	ft_get_pixel(t_data *data, t_intersect wall, int x, int y)
 {
 	int				cursor;
 	int				color;
@@ -28,7 +28,8 @@ static int	ft_get_pixel(t_data *data, t_intersect wall, int x, int y, int shade)
 		return (last_color);
 	cursor = (x + data->img[wall.flag]->size_line * y);
 	color = data->img[wall.flag]->data[cursor];
-	color |= shade;
+	if (SHADOW == TRUE)
+		color = ft_add_shade(data, color, wall.height);
 	last_coord.x = x;
 	last_coord.y = y;
 	last_color = color;
@@ -51,7 +52,7 @@ static int	ft_get_x_coord(t_data *data, t_intersect wall)
 	return (x_ret);
 }
 
-static void		ft_draw_column(t_data *data, int col, t_intersect wall, int shade)
+static void		ft_draw_column(t_data *data, int col, t_intersect wall)
 {
 	t_coord	coord;
 	int		y_wallstart;
@@ -65,11 +66,14 @@ static void		ft_draw_column(t_data *data, int col, t_intersect wall, int shade)
 	coord.y = y_wallstart;
 	coord.x = ft_get_x_coord(data, wall);
 	ft_render_background(data, col, y_wallstart, y_wallend);
-	while (coord.y < y_wallend)
+	while (coord.y <= y_wallend)
 	{
 		cursor = ft_pos(col, coord.y, data->img[VIEW]->size_line);
-		data->img[VIEW]->data[cursor] = ft_get_pixel(data, wall, coord.x,
-													coord.y - y_offset, shade);
+		if (SHADOW == TRUE && wall.dist > 1000)
+			data->img[VIEW]->data[cursor] = 0;
+		else
+			data->img[VIEW]->data[cursor] = ft_get_pixel(data, wall, coord.x,
+													coord.y - y_offset);
 		coord.y++;
 	}
 }
@@ -98,10 +102,8 @@ static void			ft_render_walls(t_data *data)
 	int			column;
 	t_intersect	wall;
 	double		alpha;
-	int			shade;
 
 	column = 0;
-	shade = 0;
 	while (column < data->res->x)
 	{
 		alpha = (data->player->a + 30) - ((60 / data->res->x) * column);
@@ -112,10 +114,8 @@ static void			ft_render_walls(t_data *data)
 		else
 			wall.dist *= cos(ft_torad(data->player->a - alpha));
 		wall.height = UNIT / wall.dist * ((data->res->x / 2) / tan(ft_torad(30)));
-		if (SHADOW == TRUE)
-			shade = ft_get_shade(wall.dist);
-		ft_draw_column(data, column, wall, shade);
-		ft_draw_column(data, column + 1, wall, shade);
+		ft_draw_column(data, column, wall);
+		ft_draw_column(data, column + 1, wall);
 		column += 2;
 	}
 }
@@ -124,7 +124,6 @@ int			ft_render_view(t_data *data)
 {
 	int				ret;
 
-//	mlx_clear_window(data->win->mlx_ptr, data->win->win_ptr);
 	ft_render_walls(data);
 	ret = ft_render_sprite(data);
 	if (data->export_flag != TRUE)

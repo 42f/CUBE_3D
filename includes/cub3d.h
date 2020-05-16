@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 17:34:31 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 18:00:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@
 #define UNIT						64	
 #define MINIMAL_DIST				24	
 #define MOVEMENT_FACTOR				9						
-#define SHADOW						FALSE	
+#define SHADOW						TRUE
 #define SHADOW_DEPTH				150
 #define MOUSE						FALSE
 
@@ -312,6 +312,7 @@ int				ft_import_textures(t_data *data);
 
 void			ft_draw_map(t_data *data);
 int				ft_get_shade(double dist);
+int             ft_add_shade(t_data *data, int color, double y);
 
 t_intersect		ft_find_wall(t_data *data, double alpha);
 t_intersect		ft_wall_vertical(t_data *data, double alpha_deg);

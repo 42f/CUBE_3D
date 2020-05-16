@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 17:41:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 18:39:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_print_error(t_data *data, int ret)
 	else if (ret == ERROR_MLX)
 		write(1, "\033[0;31mError\nISSUE WITH MLX  \033[0m\n\n", 34);
 	else if (ret == ERROR_FILE)
-		write(1, "\033[0;31mError\nCANNOT OPEN CUB \033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nWRONG CUB  FILE \033[0m\n\n", 34);
 	else if (ret == ERROR_TEXTURE)
 		write(1, "\033[0;31mError\nISSUE W/ TEXTURE\033[0m\n\n", 34);
 	else if (ret == ERROR_EXPORT)

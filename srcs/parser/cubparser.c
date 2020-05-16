@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 10:32:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 17:28:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 18:39:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,18 @@ static int		ft_dispatch_parser(char *str, t_data **data)
 		return (ft_free_all(*data, ret));
 }
 
+static int		ft_check_file_extension(t_data *data)
+{
+	size_t len;
+
+	len = ft_strlen(data->files->cub_path);
+	if (len <= 4)
+		return (ERROR);
+	if (ft_memcmp(data->files->cub_path + (len - 4), ".cub", 4) != 0)
+		return (ERROR);
+	return (TRUE);
+}
+
 int				ft_parser(t_data *data)
 {
 	int		ret;
@@ -104,7 +116,8 @@ int				ft_parser(t_data *data)
 	
 	ret = TRUE;
 	fd = open(data->files->cub_path, O_RDONLY);
-	if (fd == ERROR)
+	ret = ft_check_file_extension(data);
+	if (fd == ERROR || ret == ERROR)
 		return (ft_free_all(data, ERROR_FILE));
 	ret_gnl = TRUE;
 	while (ret_gnl == TRUE && ret == TRUE)
