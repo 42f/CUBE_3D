@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 14:43:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 15:38:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,30 +124,14 @@ int			ft_render_view(t_data *data)
 {
 	int				ret;
 
-	//mlx_clear_window(data->win->mlx_ptr, data->win->win_ptr);
+//	mlx_clear_window(data->win->mlx_ptr, data->win->win_ptr);
 	ft_render_walls(data);
 	ret = ft_render_sprite(data);
-	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
+	if (data->export_flag != TRUE)
+		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
 													data->img[VIEW]->ptr, 0, 0);
 	if (ret != TRUE)
 		ft_free_all(data, ret);
 	return (ret);
 }
 
-int			ft_loop(t_data *data)
-{
-	static t_player	old_pl;
-
-	if (old_pl.x == 0)
-	{
-		ft_memcpy(&old_pl, data->player, sizeof (double) * 3);
-		return (0);
-	}
-	else if (ft_memcmp(&old_pl, data->player, sizeof (double) * 3) == 0)
-		return (0);
-	ft_memcpy(&old_pl, data->player, sizeof (double) * 3);
-	if (data->stop_flag == TRUE)
-		exit (0);
-	else
-		return(ft_render_view(data));
-}

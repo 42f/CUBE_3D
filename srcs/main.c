@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 14:19:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 15:50:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static void		ft_struct_values(t_data *data)
 	data->colors->c_color = -1;
 	data->player->x = -1;
 	data->player->y = -1;
-	data->stop_flag = FALSE;
-
 }
 
 static int		ft_struct_failure(t_data *data, int failure)
@@ -83,13 +81,13 @@ static int		ft_struct_init(t_data *data)
 	return (TRUE);
 }
 
-static int	ft_execute(t_data *data, short export_flag)
+static int	ft_execute(t_data *data)
 {
 	int		ret;
 
 	ret = ft_parser(data);
 	if (ret == TRUE)
-		ret = ft_cub3d(data, export_flag);
+		ret = ft_cub3d(data);
 	return (ret);
 }
 
@@ -118,6 +116,7 @@ int 		main(int ac, char **av)
 		return (0);
 	}
 	data->files->cub_path = av[1];
-	ret = ft_execute(data, ac == 3);
+	data->export_flag = (ac == 3);
+	ret = ft_execute(data);
 	return (ret);
 }

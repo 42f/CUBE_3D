@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 14:16:31 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 15:34:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@
 #define D_KEY						100
 #define W_KEY						119
 #define M_KEY						109
-#define ESC_KEY						65307
+#define ESC_KEY						0xff1b
 
 #define VERTICAL					1
 #define HORIZONTAL					2
@@ -267,7 +267,7 @@ typedef struct	s_data
 	t_player	*player;
 	t_files		*files;
 	t_img		**img;
-	int			stop_flag;
+	short		export_flag;
 }				t_data;
 
 
@@ -297,8 +297,7 @@ int				ft_escape(t_data *data);
 ** RENDERING 
 */
 
-int				ft_loop(t_data* data);
-int				ft_cub3d(t_data *data, short export_flag);
+int				ft_cub3d(t_data *data);
 int				ft_render_view(t_data *data);
 void			ft_render_background(t_data *data, int x, int y_wallstart, int y_wallend);
 int				ft_render_sprite(t_data *data);

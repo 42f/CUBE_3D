@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:13:10 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 14:22:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 15:37:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	ft_standard_rotation(t_data *data, int key)
 
 int		ft_escape(t_data *data)
 {
-		data->stop_flag = TRUE;
 		ft_free_all(data, TRUE);
 		return (TRUE);
 }
@@ -36,11 +35,7 @@ int		ft_escape(t_data *data)
 int		ft_key_hook(int key, t_data *data)
 {
 	if (key == ESC_KEY)
-	{
-		ft_escape(data);
-		return (TRUE);
-	}
-	mlx_mouse_show(data->win->mlx_ptr, data->win->win_ptr);
+		return(ft_escape(data));
 	if (key == A_KEY || key == S_KEY || key == D_KEY || key == W_KEY
 									|| key == RIGHT_ARROW || key == LEFT_ARROW)
 		ft_movement_dispatch(data, key);
@@ -48,8 +43,6 @@ int		ft_key_hook(int key, t_data *data)
 		ft_standard_rotation(data, key);
 	else if (key == ESC_KEY)
 		ft_escape(data);
-	else
-		ft_render_view(data);
-	return (0);
+	return (ft_render_view(data));
 }
 
