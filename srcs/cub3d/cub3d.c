@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 18:40:34 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 11:25:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,6 @@ static void		ft_img_init(t_data *data)
 			&data->img[BG]->bpp, &data->img[BG]->size_line, &win->endian);
 	data->img[BG]->bpp /= 8;
 	data->img[BG]->size_line /= data->img[BG]->bpp;
-}
-
-static int		ft_mlx_init(t_data *data)
-{
-	t_res			res;
-	t_window		*win;
-
-	win = data->win;
-	res.x = data->res->x;
-	res.y = data->res->y;
-	win->mlx_ptr = mlx_init();
-	if (win->mlx_ptr == NULL)
-		return (ERROR_MLX);
-	win->win_ptr = mlx_new_window(win->mlx_ptr, res.x, res.y, "Cub3d");
-	if (win->win_ptr == NULL)
-		return (ERROR_MLX);
-	mlx_loop_hook(win->mlx_ptr, ft_render_view, data);
-	mlx_hook(win->win_ptr, 6, (1L<<0), ft_mouse_manager, data);
-	mlx_hook(win->win_ptr, 2, (1L<<0), ft_key_manager, data);
-	mlx_hook(win->win_ptr, 17, (1L<<2), ft_escape, data);
-	return (TRUE);
 }
 
 static void		ft_struct_failure(t_data *data, int failure)
@@ -108,6 +87,27 @@ static void		ft_img_struct_init(t_data *data)
 	data->img[BG] = malloc(sizeof(t_img));
 	if (data->img[BG] == NULL)
 		ft_struct_failure(data, 7);
+}
+
+static int		ft_mlx_init(t_data *data)
+{
+	t_res			res;
+	t_window		*win;
+
+	win = data->win;
+	res.x = data->res->x;
+	res.y = data->res->y;
+	win->mlx_ptr = mlx_init();
+	if (win->mlx_ptr == NULL)
+		return (ERROR_MLX);
+	win->win_ptr = mlx_new_window(win->mlx_ptr, res.x, res.y, "Cub3d");
+	if (win->win_ptr == NULL)
+		return (ERROR_MLX);
+//	mlx_loop_hook(win->mlx_ptr, ft_render_view, data);
+	mlx_hook(win->win_ptr, 6, (1L<<0), ft_mouse_manager, data);
+	mlx_hook(win->win_ptr, 2, (1L<<0), ft_key_manager, data);
+	mlx_hook(win->win_ptr, 17, (1L<<2), ft_escape, data);
+	return (TRUE);
 }
 
 int		ft_cub3d(t_data *data, int export_flag)

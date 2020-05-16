@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 18:41:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 11:24:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static void		ft_draw_column(t_data *data, int col, t_intersect wall, int shade)
 		cursor = ft_pos(col, coord.y, data->img[VIEW]->size_line);
 		data->img[VIEW]->data[cursor] = ft_get_pixel(data, wall, coord.x,
 													coord.y - y_offset, shade);
-		//data->img[BG]->data[cursor] = 0xFF000000;
 		coord.y++;
 	}
 }
@@ -125,7 +124,7 @@ int			ft_render_view(t_data *data)
 	int		ret;
 
 //	debug_printdata(data, 1);
-//	mlx_clear_window(data->win->mlx_ptr, data->win->win_ptr);
+	mlx_clear_window(data->win->mlx_ptr, data->win->win_ptr);
 
 	ft_render_background(data);
 	ft_render_walls(data);
@@ -133,8 +132,6 @@ int			ft_render_view(t_data *data)
 
 /*	ft_imgset(data->img[BG]->data, 0x00FF0000,
 									data->img[BG]->size_line * data->res->y);
-	ft_imgset(data->img[VIEW]->data, 0x00000000,
-									data->img[VIEW]->size_line * data->res->y);
 	ft_imgset(data->img[SP_VIEW]->data, 0xFF000000,
 								data->img[SP_VIEW]->size_line * data->res->y);
 */

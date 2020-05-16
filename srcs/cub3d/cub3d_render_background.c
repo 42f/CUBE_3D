@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:00:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/15 17:37:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 10:49:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	ft_set_floor(t_data *data, int y_floor)
 
 	half_screen = (int)data->res->y >> 1;
 	y = y_floor;
+	color = data->colors->f_color;
 	while (y < data->res->y)
 	{
-		color = data->colors->f_color;
 		if (SHADOW == TRUE)
 		{
 			shade = (0xFF * (y_floor / (double)half_screen));
@@ -45,9 +45,9 @@ static void	ft_set_ceiling(t_data *data, int *y_floor)
 
 	half_screen = (int)data->res->y >> 1;
 	y = 0;
+	color = data->colors->c_color;
 	while (y < half_screen)
 	{
-		color = data->colors->c_color;
 		if (SHADOW == TRUE)
 		{
 			shade = (0xFF * (y / (double)half_screen));
