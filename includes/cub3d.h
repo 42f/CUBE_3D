@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 15:34:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 17:34:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@
 #define UNIT						64	
 #define MINIMAL_DIST				24	
 #define MOVEMENT_FACTOR				9						
-#define SHADOW						TRUE	
+#define SHADOW						FALSE	
 #define SHADOW_DEPTH				150
 #define MOUSE						FALSE
 
@@ -115,9 +115,7 @@
 #define EA							2
 #define WE							3
 #define SP							4
-#define SP_VIEW						5
-#define VIEW						6
-#define BG							7
+#define VIEW						5
 
 /*
 ** objects flags for ft_vertical and ft_horizontal
@@ -130,6 +128,13 @@
 #define H_WALL						4
 #define V_SPRITE					5
 #define H_SPRITE					6
+
+/*
+** color parser flags
+*/
+
+#define FLOOR						0
+#define CEILING						1
 
 
 typedef struct		s_bmpheader
@@ -217,7 +222,9 @@ typedef struct	s_files
 
 typedef struct	s_colors
 {
+	t_RGB_int	f_color_rgb;
 	int			f_color;
+	t_RGB_int	c_color_rgb;
 	int			c_color;
 }				t_colors;
 

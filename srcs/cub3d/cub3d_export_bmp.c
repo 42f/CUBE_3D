@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 17:14:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/10 14:46:55 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/16 17:37:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
+/*
 static int		ft_get_pixel(t_data *data, int cursor)
 {
 	int				color_ret;
@@ -33,6 +34,7 @@ static int		ft_get_pixel(t_data *data, int cursor)
 		color_ret = c_background;
 	return (color_ret);
 }
+*/
 
 static int		ft_copy_img(t_data *data, int fd)
 {
@@ -49,8 +51,8 @@ static int		ft_copy_img(t_data *data, int fd)
 	{
 		while (x < data->res->x && ret != ERROR)
 		{
-			cursor = ft_pos(x, y, data->img[BG]->size_line);
-			color = ft_get_pixel(data, cursor);
+			cursor = ft_pos(x, y, data->img[VIEW]->size_line);
+			color = data->img[VIEW]->data[cursor];
 			ret = write(fd, &color, sizeof(int));
 			x++;
 		}

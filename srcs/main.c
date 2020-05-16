@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 15:50:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 17:34:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int		ft_struct_init(t_data *data)
 	data->files = malloc(sizeof(t_files));
 	if (data->files == NULL)
 		return (ft_struct_failure(data, 5));
-	data->img = malloc(sizeof(t_img *) * 7);
+	data->img = malloc(sizeof(t_img *) * 6);
 	if (data->img == NULL)
 		return (ft_struct_failure(data, 6));
 	ft_struct_values(data);

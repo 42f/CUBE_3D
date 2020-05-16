@@ -6,13 +6,27 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 10:32:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/02 15:22:37 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/16 17:28:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
 #include <fcntl.h>
+
+static void		ft_colors_set(t_data *data, int flag, t_RGB_int col)
+{
+	if (flag == FLOOR)
+	{
+		ft_memcpy(&data->colors->f_color_rgb, &col, sizeof (int) * 3);
+		data->colors->f_color = TRUE;
+	}
+	else if (flag == CEILING)
+	{
+		ft_memcpy(&data->colors->c_color_rgb, &col, sizeof (int) * 3);
+		data->colors->c_color = TRUE;
+	}
+}
 
 static void		ft_colors_parser(char *str, t_data *data)
 {
@@ -37,9 +51,9 @@ static void		ft_colors_parser(char *str, t_data *data)
 	if (*str != '\0')
 		return ;
 	if (type == 'F' && col.r < 256 && col.g < 256 && col.b < 256)
-		data->colors->f_color = ft_col_conv(data, col.r, col.g, col.b, 0);
+		ft_colors_set(data, FLOOR, col);
 	else if (type == 'C' && col.r < 256 && col.g < 256 && col.b < 256)
-		data->colors->c_color = ft_col_conv(data, col.r, col.g, col.b, 0);
+		ft_colors_set(data, CEILING, col);
 }
 
 static void		ft_resolution_parser(char *str, t_data *data)

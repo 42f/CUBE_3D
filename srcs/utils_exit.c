@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 15:49:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 17:41:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ void	ft_free_textures(t_data *data)
 	free(data->img[WE]);
 	free(data->img[SP]);
 	free(data->img[VIEW]);
-	free(data->img[SP_VIEW]);
-	free(data->img[BG]);
 }
 
 int		ft_free_all(t_data *data, int ret)
@@ -88,10 +86,10 @@ int		ft_free_all(t_data *data, int ret)
 			mlx_destroy_image(data->win->mlx_ptr, data->img[EA]->ptr);
 			mlx_destroy_image(data->win->mlx_ptr, data->img[WE]->ptr);
 			mlx_destroy_image(data->win->mlx_ptr, data->img[SP]->ptr);
-			mlx_destroy_image(data->win->mlx_ptr, data->img[SP_VIEW]->ptr);
 			mlx_destroy_image(data->win->mlx_ptr, data->img[VIEW]->ptr);
-			mlx_destroy_image(data->win->mlx_ptr, data->img[BG]->ptr);
-			if (data->export_flag == FALSE)
+			if (data->export_flag == TRUE)
+				free(data->win->mlx_ptr);
+			else
 				mlx_destroy_window(data->win->mlx_ptr, data->win->win_ptr);
 		}
 		if (ret == TRUE || ret == ERROR_EXPORT)
@@ -108,8 +106,6 @@ int		ft_free_all(t_data *data, int ret)
 		}
 		if (data != NULL && data->map->grid != NULL)
 			ft_free_grid(data, data->map->grid);
-		if (data->export_flag == TRUE)
-			free(data->win->mlx_ptr);
 		if (data != NULL)
 		{
 			free(data->map);
