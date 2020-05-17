@@ -6,14 +6,14 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 09:45:14 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/14 12:03:48 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:19:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
 
-int	ft_import_textures(t_data *data)
+int			ft_import_textures(t_data *data)
 {
 	t_img		**img;
 	char		*path[5];

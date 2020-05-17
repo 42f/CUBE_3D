@@ -6,6 +6,7 @@ S ./assets/xpm/SP.xpm
 NO ./assets/xpm/a.xpm
 SO ./assets/xpm/b.xpm
 EA ./assets/xpm/c.xpm
+WE ./FAKE_DIR/FAKE_FILE
 
 F 220,100,0
 C 225,30,0

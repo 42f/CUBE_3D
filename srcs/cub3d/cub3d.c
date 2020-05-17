@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 20:11:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:46:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,17 @@ static int		ft_mlx_init(t_data *data)
 {
 	t_res			res;
 	t_window		*win;
+	t_ints			screen;	
 
 	win = data->win;
-	res.x = data->res->x;
-	res.y = data->res->y;
 	win->mlx_ptr = mlx_init();
 	if (win->mlx_ptr == NULL)
 		return (ERROR_MLX);
+	mlx_get_screen_size(data->win->mlx_ptr, &screen.x, &screen.y);
+	data->res->x = ((int)data->res->x <= screen.x) ? data->res->x : (double)screen.x;
+	data->res->y = ((int)data->res->y <= screen.y) ? data->res->y : (double)screen.y;
+	res.x = data->res->x;
+	res.y = data->res->y;
 	win->win_ptr = mlx_new_window(win->mlx_ptr, res.x, res.y, data->files->cub_path);
 	if (win->win_ptr == NULL)
 		return (ERROR_MLX);

@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:54:11 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 15:25:42 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:23:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_check_files(t_data *data)
 	files[3] = data->files->ea_path;
 	files[4] = data->files->we_path;
 	i = 0;
-	while (i < 4)
+	while (i <= 4)
 	{
 		fd = open(files[i], O_RDONLY);
 		if (fd == ERROR)
@@ -40,6 +40,8 @@ int		ft_check_files(t_data *data)
 
 int		ft_check_data(t_data *data)
 {
+	if (data->map->set != TRUE)
+		return (ERROR);
 	if (data->files->sp_path == NULL)
 		return (ERROR);
 	if (data->files->no_path == NULL)

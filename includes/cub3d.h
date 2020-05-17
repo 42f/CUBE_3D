@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 20:06:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:36:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-
-/*
-** screen resolution defines
-*/
-/*
-#ifndef RES_X
-# define RES_X 2560
-#endif
-
-#ifndef RES_Y
-# define RES_Y 1440
-#endif
-*/
-
-# define RES_X 2560
-# define RES_Y 1440
-
 
 /*
 ** boolean defines

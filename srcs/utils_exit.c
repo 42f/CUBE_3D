@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 20:22:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:50:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,15 @@ void	ft_free_sprites(t_data *data, int i)
 
 void	ft_free_textures(t_data *data)
 {
-	free(data->img[NO]);
-	free(data->img[SO]);
-	free(data->img[EA]);
-	free(data->img[WE]);
-	free(data->img[SP]);
-	free(data->img[VIEW]);
+	if (data->win->win_ptr != NULL)
+	{
+		free(data->img[NO]);
+		free(data->img[SO]);
+		free(data->img[EA]);
+		free(data->img[WE]);
+		free(data->img[SP]);
+		free(data->img[VIEW]);
+	}
 }
 
 int		ft_free_all(t_data *data, int ret)

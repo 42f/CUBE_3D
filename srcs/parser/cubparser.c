@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 10:32:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 20:22:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:10:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,10 @@ int				ft_parser(t_data *data)
 	if (fd == ERROR || ft_check_file_extension(data) == ERROR)
 		return (ft_free_all(data, ERROR_FILE));
 	ret = ft_read_file(data, fd);
-	if (ret <= ERROR || data->map->set == FALSE || data->map->set == ERROR)
+	if (ret <= ERROR)
 		return (ft_free_all(data, ret));
+	else if (data->map->set == FALSE || data->map->set == ERROR)
+		return (ft_free_all(data, ERROR_MAP));
 	ret = ft_check_data(data);
 	if (ret <= ERROR || data->map->set == FALSE || data->map->set == ERROR)
 		return (ft_free_all(data, ret));

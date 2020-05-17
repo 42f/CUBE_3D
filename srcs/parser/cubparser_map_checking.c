@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 07:41:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 18:48:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 23:32:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,8 @@ int			ft_map_checker(t_data *data)
 	data->player->y = (data->player->y * UNIT) + (UNIT / 2);
 	ft_map_padding(data, map_dup);
 	ft_free_grid(data, map_dup);
+	if (ret != TRUE)
+		return (ERROR_MAP);
 	data->map->sp = malloc(sizeof (t_sprite *) * data->map->sp_qty);
 	if (data->map->sp == NULL)
 		return (ERROR_MALLOC);

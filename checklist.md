@@ -29,16 +29,18 @@ shades by columnes on floor and ceiling to be faster
 [x] - KO_extra_player_map.cub
 [x] - KO_extra_texture.cub
 [x] - KO_missing_texture_file.cub
-[ ] - KO_missing_map.cub
-[ ] - KO_missing_one_color.cub
-[ ] - KO_missing_one_texture.cub
-[ ] - KO_no_cub_extension
-[ ] - KO_no_player_map.cub
-[ ] - KO_no_resolution.cub
-[ ] - KO_open_wall_map.cub
-[ ] - KO_too_high_resolution.cub
+[x] - KO_missing_map.cub
+[x] - KO_missing_one_color.cub
+[x] - KO_missing_one_texture.cub
+[x] - KO_no_cub_extension
+[x] - KO_no_player_map.cub
+[x] - KO_no_resolution.cub
+[x] - KO_open_wall_map.cub
+[x] - KO_too_high_resolution.cub
+
+
 [ ] - VALID_complex_map.cub
-[ ] - VALID___complex_map_with_open_corners.cub
+[x] - VALID___complex_map_with_open_corners.cub
 [ ] - VALID_emptymap_highres.cub
 [ ] - VALID_emptymap_low_res.cub
 [ ] - VALID_large_empty_map.cub
