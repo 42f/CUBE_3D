@@ -1,12 +1,13 @@
 
 R 800 480
 
-S ./assets/N.png
+S ./assets/xpm/SP.xpm
 
-NO ./assetsi/fail
-SO ./assets/S.png
-EA ./assets/E.png
-WE ./assets/W.png
+NO ./assets/xpm/a.xpm
+SO ./assets/xpm/b.xpm
+EA ./assets/xpm/c.xpm
+
+WE ./FAKE_DIR/FAKEFILE
 
 F 220,100,0
 C 225,30,0

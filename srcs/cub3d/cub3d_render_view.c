@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 18:19:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 23:14:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,19 @@ static int	ft_get_pixel(t_data *data, t_intersect wall, int x, int y)
 	static t_coord	last_coord;
 	static int		last_color;
 
-	y = (UNIT / wall.height) * y;
-	y = fmod(y ,UNIT);
+	y = (data->img[wall.flag]->height / wall.height) * y;
+	y = fmod(y, data->img[wall.flag]->height);
 	if (last_coord.y == y && last_coord.x == x)
 		return (last_color);
 	cursor = (x + data->img[wall.flag]->size_line * y);
 	color = data->img[wall.flag]->data[cursor];
 	if (SHADOW == TRUE)
-		color = ft_add_shade(data, color, wall.height);
+	{
+		if  (wall.dist < 1000 && (color & BLUE) > 210)
+			color = ft_add_shade(data, color, wall.height * 10);
+		else
+			color = ft_add_shade(data, color, wall.height);
+	}
 	last_coord.x = x;
 	last_coord.y = y;
 	last_color = color;
@@ -69,9 +74,6 @@ static void		ft_draw_column(t_data *data, int col, t_intersect wall)
 	while (coord.y <= y_wallend)
 	{
 		cursor = ft_pos(col, coord.y, data->img[VIEW]->size_line);
-		if (SHADOW == TRUE && wall.dist > 1000)
-			data->img[VIEW]->data[cursor] = 0;
-		else
 			data->img[VIEW]->data[cursor] = ft_get_pixel(data, wall, coord.x,
 													coord.y - y_offset);
 		coord.y++;

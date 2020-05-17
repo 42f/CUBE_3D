@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 17:34:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 17:08:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int 		main(int ac, char **av)
 	data->files->cub_path = av[1];
 	data->export_flag = (ac == 3);
 	ret = ft_execute(data);
+	ft_free_all(data, ret);
 	return (ret);
 }

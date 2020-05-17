@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:54:11 by bvalette          #+#    #+#             */
-/*   Updated: 2020/04/13 18:01:10 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/17 15:25:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ int		ft_check_data(t_data *data)
 		return (ERROR);
 	if (data->colors->f_color == -1 || data->colors->c_color == -1)
 		return (ERROR);
-	if (data->res->x > RES_X)
-		data->res->x = RES_X;
-	if (data->res->y > RES_Y)
-		data->res->y = RES_Y;
 	if (data->res->x < 1 || data->res->y < 1 || data->map->set != TRUE)
 		return (ERROR);
 	return (ft_check_files(data));

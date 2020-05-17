@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 18:00:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 20:06:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,23 @@
 ** boolean defines
 */
 
-#define TRUE						1
 #define FALSE						0
+#define SUCCESS						1
+#define TRUE						1
 
 /*
 ** errors defines
 */
 
 #define ERROR						-1
-#define ERROR_FILE					-2
-#define ERROR_MAP					-3
-#define ERROR_MALLOC				-4
-#define ERROR_MALLOC_IM				-5
-#define ERROR_PLAYER				-6
-#define ERROR_MLX					-7
-#define ERROR_EXPORT				-8
-#define ERROR_TEXTURE				-9
+#define ERROR_MALLOC				-2
+#define ERROR_MALLOC_IM				-3
+#define ERROR_MLX					-4
+#define ERROR_EXPORT				-5
+#define ERROR_FILE					-6
+#define ERROR_MAP					-7
+#define ERROR_TEXTURE				-8
+#define ERROR_PLAYER				-9
 #define ERROR_TEXTURE_IMPORT		-10
 
 /*
@@ -285,11 +286,13 @@ typedef struct	s_data
 int 			ft_parser(t_data *data);
 int				ft_check_data(t_data *data);
 int				ft_check_files(t_data *data);
-void			ft_map_parser(t_data *data, int fd);
+int				ft_map_parser(t_data *data, int fd);
 int				ft_map_checker(t_data *data);
 int				**ft_init_grid(int x, int y);
 int				ft_textures_parser(char *str, t_data *data);
 int				ft_is_mapdata(char *line);
+int				ft_is_onlyspaces(char *line);
+	
 
 /*
 ** USER INTERACTIONS 

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 18:39:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 20:22:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,29 @@ void	ft_free_grid(t_data *data, int **grid)
 static void	ft_print_error(t_data *data, int ret)
 {
 	if (ret == FALSE)
-		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 46);
+		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 45);
 	else if (ret == ERROR_MALLOC || ret == ERROR_MALLOC_IM)
-		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 35);
 	else if (ret == ERROR_TEXTURE_IMPORT)
 		write(1, "\033[0;31mError\nCAN'T IMPORT TEXTURE  \033[0m\n\n", 40);
-	else if (ret == ERROR_PLAYER)
-		write(1, "\033[0;31mError\nPLAYER ERROR    \033[0m\n\n", 34);
 	else if (ret == ERROR_MAP)
-		write(1, "\033[0;31mError\nMAP NOT CORRECT \033[0m\n\n", 34);
-	else if (data->map->set == ERROR_MAP)
-		write(1, "\033[0;31mError\nCUB FILE WRONG  \033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nMAP NOT CORRECT \033[0m\n\n", 35);
+	else if (ret == ERROR_PLAYER)
+		write(1, "\033[0;31mError\nPLAYER ERROR    \033[0m\n\n", 35);
+	else if (data->map->set == ERROR)
+		write(1, "\033[0;31mError\nMAP ERROR IN CUB\033[0m\n\n", 35);
 	else if (data->map->set == ERROR_MALLOC)
-		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 35);
 	else if (ret == ERROR_MLX)
-		write(1, "\033[0;31mError\nISSUE WITH MLX  \033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nISSUE WITH MLX  \033[0m\n\n", 35);
 	else if (ret == ERROR_FILE)
-		write(1, "\033[0;31mError\nWRONG CUB  FILE \033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nWRONG CUB  FILE \033[0m\n\n", 35);
 	else if (ret == ERROR_TEXTURE)
-		write(1, "\033[0;31mError\nISSUE W/ TEXTURE\033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nISSUE W/ TEXTURE\033[0m\n\n", 35);
 	else if (ret == ERROR_EXPORT)
-		write(1, "\033[0;31mError\nCOULD NOT EXPORT\033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nCOULD NOT EXPORT\033[0m\n\n", 35);
 	else if (ret != TRUE)
-		write(1, "\033[0;31mError\nCUB FILE FAULTY \033[0m\n\n", 34);
+		write(1, "\033[0;31mError\nCUB FILE FAULTY \033[0m\n\n", 35);
 }
 
 void	ft_free_sprites(t_data *data, int i)
@@ -76,10 +76,12 @@ void	ft_free_textures(t_data *data)
 
 int		ft_free_all(t_data *data, int ret)
 {
+	debug_printdata(data, ret);
+//	data->img[10000]->data[0] = 1;
 	ft_print_error(data, ret);
 	if (ret != ERROR_MALLOC && ret != ERROR_FILE)
 	{
-		if (data != NULL)
+		if (data != NULL && data->win->win_ptr != NULL)
 		{	
 			mlx_destroy_image(data->win->mlx_ptr, data->img[NO]->ptr);
 			mlx_destroy_image(data->win->mlx_ptr, data->img[SO]->ptr);

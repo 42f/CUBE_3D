@@ -1,17 +1,17 @@
 
 R 800 480
 
-S ./assets/N.png
+S ./assets/xpm/SP.xpm
 
-NO ./assets/N.png
-SO ./assets/S.png
-EA ./assets/E.png
-W ./assets/W.png
+NO ./assets/xpm/a.xpm
+SO ./assets/xpm/b.xpm
+EA ./assets/xpm/c.xpm
+WE ./assets/xpm/W_1.xpm
 
 F 220,100,0
 C 225,30,0
 
 1111111
-1000001
-1004801
+1E00001
+100_001
 1111111

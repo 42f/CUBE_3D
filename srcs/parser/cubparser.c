@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 10:32:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 18:39:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 20:22:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ static void		ft_colors_set(t_data *data, int flag, t_RGB_int col)
 	}
 }
 
-static void		ft_colors_parser(char *str, t_data *data)
+// envoyer &str a atoi pour le laisser faire avancer le pointeur ?
+
+static int		ft_colors_parser(char *str, t_data *data)
 {
 	t_RGB_int	col;
 	char		type;
 
 	type = *str;
 	str++;
+	if (data->colors->c_color == TRUE && data->colors->f_color == TRUE)
+		return (ERROR_FILE);
 	while (*str != '\0' && *str == ' ')
 		str++;
 	col.r = ft_atoi(str);
@@ -48,16 +52,19 @@ static void		ft_colors_parser(char *str, t_data *data)
 	col.b = ft_atoi(str);
 	while(ft_isdigit(*str) == TRUE || *str == ' ')
 		str++;
-	if (*str != '\0')
+/*	if (*str != '\0')
 		return ;
-	if (type == 'F' && col.r < 256 && col.g < 256 && col.b < 256)
+*/	if (type == 'F' && col.r < 256 && col.g < 256 && col.b < 256)
 		ft_colors_set(data, FLOOR, col);
 	else if (type == 'C' && col.r < 256 && col.g < 256 && col.b < 256)
 		ft_colors_set(data, CEILING, col);
+	return (TRUE);
 }
 
-static void		ft_resolution_parser(char *str, t_data *data)
+static int		ft_resolution_parser(char *str, t_data *data)
 {
+	if (data->res->x != -1 || data->res->y != -1)
+		return (ERROR_FILE);
 	while (*str != '\0' && ft_isalpha(*str) == TRUE)
 		str++;
 	data->res->x = ft_atoi(str);
@@ -66,33 +73,33 @@ static void		ft_resolution_parser(char *str, t_data *data)
 	while (*str != '\0' && ft_isdigit(*str) == TRUE)
 		str++;
 	data->res->y = ft_atoi(str);
+	return (TRUE);
 }
 
-static int		ft_dispatch_parser(char *str, t_data **data)
+static int		ft_dispatch_parser(char *str, t_data *data)
 {
 	int		ret;
 
 	ret = TRUE;
 	if (ft_strncmp(str, "NO ", 3) == 0)
-		ret = ft_textures_parser(str, *data);
+		ret = ft_textures_parser(str, data);
 	else if (ft_strncmp(str, "SO ", 3) == 0)
-		ret = ft_textures_parser(str, *data);
+		ret = ft_textures_parser(str, data);
 	else if (ft_strncmp(str, "WE ", 3) == 0)
-		ret = ft_textures_parser(str, *data);
+		ret = ft_textures_parser(str, data);
 	else if (ft_strncmp(str, "EA ", 3) == 0)
-		ret = ft_textures_parser(str, *data);
+		ret = ft_textures_parser(str, data);
 	else if (ft_strncmp(str, "S ", 2) == 0)
-		ret = ft_textures_parser(str, *data);
+		ret = ft_textures_parser(str, data);
 	else if (ft_strncmp(str, "R ", 2) == 0)
-		ft_resolution_parser(str, *data);
+		ret = ft_resolution_parser(str, data);
 	else if (ft_strncmp(str, "F ", 2) == 0)
-		ft_colors_parser(str, *data);
+		ret = ft_colors_parser(str, data);
 	else if (ft_strncmp(str, "C ", 2) == 0)
-		ft_colors_parser(str, *data);
-	if (ret == TRUE)
-		return (ret);
+		ret = ft_colors_parser(str, data);
 	else
-		return (ft_free_all(*data, ret));
+		ret = ERROR_FILE; 
+	return (ret);
 }
 
 static int		ft_check_file_extension(t_data *data)
@@ -107,36 +114,49 @@ static int		ft_check_file_extension(t_data *data)
 	return (TRUE);
 }
 
-int				ft_parser(t_data *data)
+static int		ft_read_file(t_data *data, int fd)
 {
-	int		ret;
 	int		ret_gnl;
-	int		fd;
+	int		ret;
 	char	*line;
-	
+
 	ret = TRUE;
-	fd = open(data->files->cub_path, O_RDONLY);
-	ret = ft_check_file_extension(data);
-	if (fd == ERROR || ret == ERROR)
-		return (ft_free_all(data, ERROR_FILE));
 	ret_gnl = TRUE;
 	while (ret_gnl == TRUE && ret == TRUE)
 	{
 		ret_gnl = get_next_line(fd, &line);
-		if (ret != ERROR && ft_is_mapdata(line) == TRUE)
-			ft_map_parser(data, fd);
-		else if (ret != ERROR && line[0] != ' ')
-			ret = ft_dispatch_parser(line, &data);
+		if (ret_gnl != ERROR) 
+		{
+			if (ft_is_mapdata(line) == TRUE)
+				ret = ft_map_parser(data, fd);
+			else if (ft_is_onlyspaces(line) == FALSE)
+				ret = ft_dispatch_parser(line, data);
+		}
 		free(line);
 	}
-	if (ret <= ERROR)
+	close(fd);
+	if (ret_gnl == ERROR)
+		ret = ERROR_FILE;
+	return (ret);
+}
+
+int				ft_parser(t_data *data)
+{
+	int		ret;
+	int		fd;
+	
+	ret = TRUE;
+	fd = open(data->files->cub_path, O_RDONLY);
+	if (fd == ERROR || ft_check_file_extension(data) == ERROR)
+		return (ft_free_all(data, ERROR_FILE));
+	ret = ft_read_file(data, fd);
+	if (ret <= ERROR || data->map->set == FALSE || data->map->set == ERROR)
 		return (ft_free_all(data, ret));
 	ret = ft_check_data(data);
-	if (ret <= ERROR)
+	if (ret <= ERROR || data->map->set == FALSE || data->map->set == ERROR)
 		return (ft_free_all(data, ret));
 	ret = ft_map_checker(data);
-	if (ret <= ERROR || data->map->set == FALSE)
+	if (ret <= ERROR || data->map->set == FALSE || data->map->set == ERROR)
 		return (ft_free_all(data, ret));
-	close(fd);
 	return (TRUE);
 }

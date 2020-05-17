@@ -1,5 +1,5 @@
 
-R 800 500 
+R 800 480
 
 S ./assets/xpm/SP.xpm
 
@@ -7,13 +7,13 @@ NO ./assets/xpm/a.xpm
 SO ./assets/xpm/b.xpm
 EA ./assets/xpm/c.xpm
 WE ./assets/xpm/W_1.xpm
-F 75, 75, 75 
-C 160, 75, 75
+
+X ./assets/E.png
+
+F 220,100,0
+C 225,30,0
 
 1111111
-1S11001
-1000001
-1000001
-1001001
+1E00001
 1000001
 1111111

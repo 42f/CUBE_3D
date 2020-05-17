@@ -1,13 +1,12 @@
 
 R 500 500 
 
-S ./assets/SP_64.png
+S ./assets/xpm/SP.xpm
 
-NO ./assets/brick_64/N.png
-SO ./assets/brick_64/N.png
-EA ./assets/brick_64/N.png
-WE ./assets/brick_64/N.png
-
+NO ./assets/xpm/a.xpm
+SO ./assets/xpm/b.xpm
+EA ./assets/xpm/c.xpm
+WE ./assets/xpm/W_1.xpm
 F 175, 75, 75 
 C 75, 75, 75
 

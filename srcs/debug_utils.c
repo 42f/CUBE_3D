@@ -101,9 +101,9 @@ void	debug_printgrid(t_data *data, int **map)
 	printf("x = %f, y = %f\n", data->map->x, data->map->y);	
 	printf("%s\n", data->files->cub_path);
 
-	if (data->map->set == ERROR)
+/*	if (data->map->set == ERROR)
 		return ; 
-	while (i < data->map->y)
+*/	while (i < data->map->y)
 	{
 		while (j < data->map->x)
 		{

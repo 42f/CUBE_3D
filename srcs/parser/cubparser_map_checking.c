@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 07:41:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/09 19:26:45 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/17 18:48:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static int		ft_ismapclosed(t_data *data, int x, int y, int **map)
 static int	ft_player_set(int x, int y, t_data *data, char orientation)
 {
 	if (data->player->x != -1 || data->player->y != -1)
-		return (ERROR_PLAYER);
-	else if (x == data->map->x || y == data->map->y)
 		return (ERROR_PLAYER);
 	data->player->a = (orientation == 'E') ? 0 : data->player->a;
 	data->player->a = (orientation == 'N') ? 90 : data->player->a;

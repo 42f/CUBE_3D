@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 17:41:21 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/17 20:11:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int		ft_mlx_init(t_data *data)
 	win->mlx_ptr = mlx_init();
 	if (win->mlx_ptr == NULL)
 		return (ERROR_MLX);
-	win->win_ptr = mlx_new_window(win->mlx_ptr, res.x, res.y, "Cub3d");
+	win->win_ptr = mlx_new_window(win->mlx_ptr, res.x, res.y, data->files->cub_path);
 	if (win->win_ptr == NULL)
 		return (ERROR_MLX);
 	mlx_do_key_autorepeaton(data->win->mlx_ptr);

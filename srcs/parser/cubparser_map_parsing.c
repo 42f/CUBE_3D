@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 09:00:54 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/03 15:02:33 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/17 20:12:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 static void	ft_parse_line(t_data *data, char *line, int y)
 {
 	int		i;
-
+	
 	i = 0;
+	if (y >= data->map->y)
+	{
+		data->map->set = ERROR_MAP;
+		return ;
+	}
 	while (line != NULL && *line != '\0' && i < data->map->x)
 	{
 		if (*line == ' ')
@@ -28,25 +33,27 @@ static void	ft_parse_line(t_data *data, char *line, int y)
 			data->map->grid[y][i] = *line - 48;
 		else if (*line == 'N' || *line == 'S' || *line == 'E' || *line == 'W')
 			data->map->grid[y][i] = *line;
+		else
+			data->map->set = ERROR_MAP; 
 		line++;
 		i++;
 	}
 }
 
-static void	ft_parse_grid(t_data *data)
+static int	ft_parse_grid(t_data *data)
 {
 	int		fd;
-	int		ret;
+	int		ret_gnl;
 	char	*line;
 	int		y;
 
 	y = 0;
-	ret = TRUE;
+	ret_gnl = TRUE;
 	fd = open(data->files->cub_path, O_RDONLY);
-	while (ret == TRUE && fd != ERROR)
+	while (fd != ERROR && ret_gnl == TRUE)
 	{
-		ret = get_next_line(fd, &line);
-		if (ret != ERROR && ft_is_mapdata(line) == TRUE)
+		ret_gnl = get_next_line(fd, &line);
+		if (ret_gnl != ERROR && ft_is_mapdata(line) == TRUE) 
 		{
 			ft_parse_line(data, line, y);
 			y++;
@@ -54,6 +61,10 @@ static void	ft_parse_grid(t_data *data)
 		free(line);
 	}
 	close(fd);
+	if (ret_gnl == ERROR)
+		return (ERROR_FILE);
+	data->map->set = TRUE;
+	return (TRUE);
 }
 
 int			**ft_init_grid(int x, int y)
@@ -82,53 +93,51 @@ int			**ft_init_grid(int x, int y)
 	return (output);
 }
 
-void		ft_grid_calibrator(int fd, t_data *data)
+int			ft_grid_calibrator(int fd, t_data *data)
 {
 	int		ret;
+	int		ret_gnl;
 	size_t	lines_nbr;
 	size_t	max_len;
-	size_t	line_len;
 	char	*line;
 
 	ret = TRUE;
+	ret_gnl = TRUE;
 	max_len = 0;
 	lines_nbr = 1;
-	while (ret == TRUE && data->map->set != ERROR)
+	while (ret_gnl == TRUE && ret == TRUE)
 	{
-		ret = get_next_line(fd, &line);
-		if (ret != ERROR && ft_is_mapdata(line) == TRUE)
+		ret_gnl = get_next_line(fd, &line);
+		if (ret_gnl != ERROR)
 		{
+			ret = ft_is_mapdata(line);
 			lines_nbr++;
-			line_len = ft_strlen(line);
-			max_len = (line_len > max_len) ? line_len : max_len;
-			data->map->set = TRUE;
+			max_len = (ft_strlen(line) > max_len) ? ft_strlen(line) : max_len;
 		}
-		else if (ret == ERROR)
-			data->map->set = ERROR;
 		free(line);
 	}
+	if (ret_gnl == ERROR || ret == ERROR)
+		return (ERROR);
 	data->map->x = max_len;
 	data->map->y = lines_nbr;
+	return (TRUE);
 }
 
-void		ft_map_parser(t_data *data, int fd)
+int		ft_map_parser(t_data *data, int fd)
 {
 	if (data->map->set == FALSE)
 	{
-		ft_grid_calibrator(fd, data);
-		if (data->map->set == ERROR)
-			return ;
-		if (data->map->set == TRUE)
-		{
-			data->map->grid = ft_init_grid(data->map->x, data->map->y);
-			if (data->map->grid == NULL)
-			{
-				data->map->set = ERROR_MALLOC;
-				return ;
-			}
-			ft_parse_grid(data);
-		}
+		if (ft_grid_calibrator(fd, data) == ERROR)
+			return (ERROR_MAP);
+		data->map->grid = ft_init_grid(data->map->x, data->map->y);
+		if (data->map->grid == NULL)
+			return (ERROR_MALLOC);
+		else		
+			return (ft_parse_grid(data));
 	}
 	else
-		data->map->set = ERROR_MAP;
+	{	
+		data->map->set = ERROR;
+		return (ERROR);
+	}
 }

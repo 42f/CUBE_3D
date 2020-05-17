@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:00:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 18:19:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/16 22:05:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_set_floor(t_data *data, int x, int y, int color)
 static void	ft_set_ceiling(t_data *data, int x, int y, int color)
 {
 	if (SHADOW == TRUE)
-		color = ft_add_shade(data, color, data->res->x / 2 - y);
+		color = ft_add_shade(data, color, data->res->y / 2 - y);
 	data->img[VIEW]->data[x + y * data->img[VIEW]->size_line] = color;
 }
 
