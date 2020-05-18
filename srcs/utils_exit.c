@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 20:28:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 20:40:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ void	ft_free_sprites(t_data *data, int i)
 {
 	while (i >= 0)
 	{
-	printf("free [%d] %p \n\n", i, data->map->sp[i]);
 		free(data->map->sp[i]);
 		i--;
 	}
-printf("MALLOC, add %p\n\n", data->map->sp);
 	free(data->map->sp);
 }
 
