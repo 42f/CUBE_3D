@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 23:50:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 11:18:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_free_textures(t_data *data)
 
 int		ft_free_all(t_data *data, int ret)
 {
-	debug_printdata(data, ret);
+//	debug_printdata(data, ret);
 //	data->img[10000]->data[0] = 1;
 	ft_print_error(data, ret);
 	if (ret != ERROR_MALLOC && ret != ERROR_FILE)

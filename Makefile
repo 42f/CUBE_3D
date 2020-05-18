@@ -20,7 +20,7 @@ ifeq ($(DEBUG_UNDEF), 1)
 DEBUG_FLAGS		= -fsanitize=undefined
 endif
 
-NAME		= a.out
+NAME		= Cub3D
 
 S_DIR 	= srcs
 

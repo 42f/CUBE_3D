@@ -1,18 +1,3 @@
-
-# Error management
-2 resolutions
-2 colors (ceiling/floor)
-2 Maps
-check segfaults with KO maps
-resolution with mlx function
-
-
-# exit
-use X window to quit
-
-# keyboard
-working on azerty ?
-
 # details
 angles @ 45 degres being weird
 

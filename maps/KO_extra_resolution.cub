@@ -1,0 +1,22 @@
+
+R 640 480
+R 10 10
+
+S ./assets/xpm/SP.xpm
+
+NO ./assets/xpm/a.xpm
+SO ./assets/xpm/b.xpm
+EA ./assets/xpm/c.xpm
+WE ./assets/xpm/W_1.xpm
+
+F 220,100,0
+C 225,30,0
+
+11111
+11011
+10011
+10011
+10011
+10011
+1S111
+11111

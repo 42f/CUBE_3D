@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 23:46:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 12:20:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ static int		ft_mlx_init(t_data *data)
 	if (win->win_ptr == NULL)
 		return (ERROR_MLX);
 	mlx_do_key_autorepeaton(data->win->mlx_ptr);
-	mlx_hook(win->win_ptr, 6, (1L<<0), ft_mouse_manager, data);
+	mlx_hook(win->win_ptr, 7, (1L<<0), ft_mouse_manager, data);
 	mlx_hook(win->win_ptr, 2, (1L<<0), ft_key_hook, data);
-	mlx_hook(win->win_ptr, 17, (1L<<2), ft_escape, data);
+	mlx_hook(win->win_ptr, 17, (1L<<17), ft_escape, data);
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 14:02:48 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 18:07:13 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 14:42:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,12 @@ static void	ft_put_pixel(t_data *data, double dist, int x, int y, int cursor)
 	cursor_color = ft_pos(x, y, data->img[SP]->size_line);
  	color = data->img[SP]->data[cursor_color];
 	if (SHADOW == TRUE)
-		color = ft_add_shade(data, color, dist);
+	{
+		if  (dist < 1000 && (color & BLUE) > 210)
+			color = ft_add_shade(data, color, dist * 100);
+		else
+			color = ft_add_shade(data, color, dist);
+	}
 	if (color != 0)
 		data->img[VIEW]->data[cursor] = color;
 }
@@ -230,7 +235,7 @@ static void		ft_fill_column(t_data *data, int col, t_sprite sp, int index)
 
 	y_start = (sp.height >= data->res->y) ? 0 : (data->res->y - sp.height) / 2;
 	y_offset = (sp.height >= data->res->y) ? (data->res->y - sp.height) / 2 : y_start;
-	y_end = data->res->y - y_start;
+	y_end = data->res->y - y_start - 1;
 	coord.y = y_start;
 	coord.x = (index - sp.index_in) * data->img[SP]->width - 1;
 	coord.x /= (sp.index_out - sp.index_in);
@@ -260,7 +265,7 @@ static void			ft_draw_column(t_data *data, int col, int index, double alpha)
 		if (wall_dist > data->map->sp[i]->dist
 		&& index >= index_in  
 		&& index <= index_out
-		&& data->map->sp[i]->dist > 60)
+		&& data->map->sp[i]->dist > 40)
 		{
 			ft_fill_column(data, col, *data->map->sp[i], index);
 		}
