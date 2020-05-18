@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 09:45:14 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 23:19:34 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 18:33:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 int			ft_import_textures(t_data *data)
 {
 	t_img		**img;
-	char		*path[5];
-	int			wall;
+	char		*path[6];
+	int			flag;
 
 	img = data->img;
 	path[NO] = data->files->no_path;
@@ -25,22 +25,20 @@ int			ft_import_textures(t_data *data)
 	path[EA] = data->files->ea_path;
 	path[WE] = data->files->we_path;
 	path[SP] = data->files->sp_path;
-	wall = NO;
-	while (wall <= SP)
+	path[GUN] = "./assets/gun/gun.xpm";
+	flag = NO;
+	while (flag <= GUN)
 	{
-	/*	img[wall]->ptr = mlx_png_file_to_image(data->win->mlx_ptr,
-							path[wall],	&img[wall]->width, &img[wall]->height);
-		if (img[wall]->ptr == NULL)
-	*/		img[wall]->ptr = mlx_xpm_file_to_image(data->win->mlx_ptr,
-							path[wall], &img[wall]->width, &img[wall]->height);
-		if (img[wall]->ptr != NULL)
-			img[wall]->data = (int *)mlx_get_data_addr(img[wall]->ptr,
-					&img[wall]->bpp, &img[wall]->size_line, &data->win->endian);
-		if (img[wall]->ptr == NULL || img[wall]->data == NULL)
+			img[flag]->ptr = mlx_xpm_file_to_image(data->win->mlx_ptr,
+							path[flag], &img[flag]->width, &img[flag]->height);
+		if (img[flag]->ptr != NULL)
+			img[flag]->data = (int *)mlx_get_data_addr(img[flag]->ptr,
+					&img[flag]->bpp, &img[flag]->size_line, &data->win->endian);
+		if (img[flag]->ptr == NULL || img[flag]->data == NULL)
 			return (ERROR_TEXTURE_IMPORT);
-		img[wall]->bpp >>= 3;
-		img[wall]->size_line /= img[wall]->bpp;
-		wall++;
+		img[flag]->bpp >>= 3;
+		img[flag]->size_line /= img[flag]->bpp;
+		flag++;
 	}
 	return (TRUE);
 }

@@ -2,8 +2,6 @@
 angles @ 45 degres being weird
 
 # extra
-better sprite file
-add img for gun and target
 move from defined to keys in cub file for shades
 shades by columnes on floor and ceiling to be faster
 

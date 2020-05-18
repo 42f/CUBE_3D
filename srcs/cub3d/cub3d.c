@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 14:54:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 18:23:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void		ft_struct_failure(t_data *data, int failure)
 		free(data->img[WE]);
 	if (failure > 4)
 		free(data->img[SP]);
+	if (failure > 5)
+		free(data->img[GUN]);
 	free(data->img);
 	ft_free_all(data, ERROR_MALLOC_IM);
 }
@@ -64,9 +66,12 @@ static void		ft_img_struct_init(t_data *data)
 	data->img[SP] = malloc(sizeof(t_img));
 	if (data->img[SP] == NULL)
 		ft_struct_failure(data, 4);
+	data->img[GUN] = malloc(sizeof(t_img));
+	if (data->img[GUN] == NULL)
+		ft_struct_failure(data, 5);
 	data->img[VIEW] = malloc(sizeof(t_img));
 	if (data->img[VIEW] == NULL)
-		ft_struct_failure(data, 5);
+		ft_struct_failure(data, 6);
 }
 
 static int		ft_mlx_init(t_data *data)

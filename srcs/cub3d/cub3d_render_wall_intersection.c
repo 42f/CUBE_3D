@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 14:46:47 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/08 14:58:13 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/18 19:37:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ t_intersect		ft_wall_vertical(t_data *data, double alpha_deg)
 		inter.coord.x = ceil(data->player->x / UNIT) * UNIT;
 	x_offset = fabs(data->player->x - inter.coord.x);
 	inter.coord.y = data->player->y + (x_offset * tan(beta_rad) * sign.y);
-	output = ft_cell_type(data, data->map->grid, inter.coord, alpha_deg, VERTICAL);
+	output = ft_cell_type(data, inter.coord, alpha_deg, VERTICAL);
 	while (output != WALL && output != ERROR)
 	{
 		x_offset = fabs(data->player->x - inter.coord.x);
 		inter.coord.x += UNIT * sign.x;
 		inter.coord.y += UNIT * tan(beta_rad) * sign.y;
-		output = ft_cell_type(data, data->map->grid, inter.coord, alpha_deg, VERTICAL);
+		output = ft_cell_type(data, inter.coord, alpha_deg, VERTICAL);
 	}
 	x_offset = fabs(data->player->x - inter.coord.x);
 	inter.dist = fabs(x_offset / cos(beta_rad));
@@ -63,12 +63,12 @@ t_intersect		ft_wall_horizontal(t_data *data, double alpha_deg)
 		inter.coord.y = ceil(data->player->y / UNIT) * UNIT;
 	y_offset = fabs(data->player->y - inter.coord.y);
 	inter.coord.x = data->player->x + (y_offset * tan(beta_rad) * sign.x);
-	output = ft_cell_type(data, data->map->grid, inter.coord, alpha_deg, HORIZONTAL);
+	output = ft_cell_type(data, inter.coord, alpha_deg, HORIZONTAL);
 	while (output != WALL && output != ERROR)
 	{
 		inter.coord.y += UNIT * sign.y;
 		inter.coord.x += UNIT * tan(beta_rad) * sign.x;
-		output = ft_cell_type(data, data->map->grid, inter.coord, alpha_deg, HORIZONTAL);
+		output = ft_cell_type(data, inter.coord, alpha_deg, HORIZONTAL);
 	}
 	y_offset = fabs(data->player->y - inter.coord.y);
 	inter.dist = fabs(y_offset / cos(beta_rad));

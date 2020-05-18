@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 18:10:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 19:57:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@
 #define UNIT						64	
 #define MINIMAL_DIST				24	
 #define MOVEMENT_FACTOR				9						
+#define SOLID_SPRITE				TRUE
 #define SHADOW						TRUE
 #define SHADOW_DEPTH				150
 #define MOUSE						FALSE
@@ -99,7 +100,8 @@
 #define EA							2
 #define WE							3
 #define SP							4
-#define VIEW						5
+#define GUN 						5
+#define VIEW						6
 
 /*
 ** objects flags for ft_vertical and ft_horizontal
@@ -303,8 +305,8 @@ int             ft_add_shade(t_data *data, int color, double y);
 t_intersect		ft_find_wall(t_data *data, double alpha);
 t_intersect		ft_wall_vertical(t_data *data, double alpha_deg);
 t_intersect		ft_wall_horizontal(t_data *data, double alpha_deg);
-t_intersect		ft_sp_vertical(t_data *data, int **map, double alpha_deg, t_coord origin);
-t_intersect		ft_sp_horizontal(t_data *data, int **map, double alpha_deg, t_coord origin);
+t_intersect		ft_sp_vertical(t_data *data, double alpha_deg, t_coord origin);
+t_intersect		ft_sp_horizontal(t_data *data, double alpha_deg, t_coord origin);
 
 
 /*
@@ -321,7 +323,7 @@ double			ft_convert_alpha(double alpha_deg);
 
 int				ft_col_conv(t_data *data, int r, int g, int b, int a);
 int				ft_save_to_file(t_data *data);
-int				ft_cell_type(t_data *data, int **map, t_coord in,
+int				ft_cell_type(t_data *data, t_coord in,
 													double alpha_deg, int flag);
 void			ft_imgset(int *img, int color, size_t len);
 int				ft_pos(int x, int y, int size_line);

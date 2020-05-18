@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:57:12 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/16 22:25:46 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 19:39:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_col_conv(t_data *data, int r, int g, int b, int a)
 	return (ret);
 }
 
-int	ft_cell_type(t_data *data, int **map, t_coord in, double alpha, int flag)
+int	ft_cell_type(t_data *data, t_coord in, double alpha, int flag)
 {
 	int x; 
 	int y;
@@ -62,9 +62,9 @@ int	ft_cell_type(t_data *data, int **map, t_coord in, double alpha, int flag)
 		return (ERROR);
 	if (y < 0 || y >= data->map->y)
 		return (ERROR);
-	if(map[y][x] == 1)
+	if(data->map->grid[y][x] == 1)
 		return (WALL);
-	else if(map[y][x] == 2)
+	else if(data->map->grid[y][x] == 2)
 		return (SPRITE);
 	else
 		return (EMPTY);

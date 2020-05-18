@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 14:02:48 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 14:42:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 19:39:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ static t_intersect	ft_find_sprite(t_data *data, double alpha, t_coord origin)
 	t_intersect output;
 
 	alpha = ft_map_alpha(alpha);
-	proj_hor = ft_sp_horizontal(data, data->map->grid, alpha, origin);
-	proj_ver = ft_sp_vertical(data, data->map->grid, alpha, origin);
+	proj_hor = ft_sp_horizontal(data, alpha, origin);
+	proj_ver = ft_sp_vertical(data, alpha, origin);
 	output.flag = ERROR;
 	if (proj_ver.dist < proj_hor.dist && proj_ver.flag != ERROR)
 	{
@@ -265,7 +265,7 @@ static void			ft_draw_column(t_data *data, int col, int index, double alpha)
 		if (wall_dist > data->map->sp[i]->dist
 		&& index >= index_in  
 		&& index <= index_out
-		&& data->map->sp[i]->dist > 40)
+		&& data->map->sp[i]->dist > 30)
 		{
 			ft_fill_column(data, col, *data->map->sp[i], index);
 		}
