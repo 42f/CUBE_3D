@@ -47,6 +47,4 @@ Error (line 48): function ft_wall_horizontal has 26 lines
 Error (line 33): function ft_colors_parser has 27 lines
 Error (line 77): function ft_locate_all_sprites has 26 lines
 Error (line 96): function ft_grid_calibrator has 26 lines
-Error (line 15): ft_set_floor have 5 parameters
-Error (line 22): ft_set_ceil have 5 parameters
 Error (line 207): ft_put_pixel have 5 parameters

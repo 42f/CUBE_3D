@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 14:02:48 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 19:39:22 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/19 12:18:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ static double		ft_get_wall_dist(t_data *data, double alpha)
 
 static void	ft_put_pixel(t_data *data, double dist, int x, int y, int cursor)
 {
-	int			cursor_color;
+	int			cuolor;
 	int			color;
 
 	y = (UNIT / dist) * y;

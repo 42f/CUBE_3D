@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 18:23:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/19 12:12:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void		ft_img_struct_init(t_data *data)
 
 static int		ft_mlx_init(t_data *data)
 {
-	t_res			res;
 	t_window		*win;
 	t_ints			screen;	
 
@@ -85,11 +84,10 @@ static int		ft_mlx_init(t_data *data)
 	if (win->mlx_ptr == NULL)
 		return (ERROR_MLX);
 	mlx_get_screen_size(data->win->mlx_ptr, &screen.x, &screen.y);
-	data->res->x = ((int)data->res->x <= screen.x) ? data->res->x : (double)screen.x;
-	data->res->y = ((int)data->res->y <= screen.y) ? data->res->y : (double)screen.y;
-	res.x = data->res->x;
-	res.y = data->res->y;
-	win->win_ptr = mlx_new_window(win->mlx_ptr, res.x, res.y, data->files->cub_path);
+	data->res->x = ((int)data->res->x < screen.x) ? data->res->x : (double)screen.x;
+	data->res->y = ((int)data->res->y < screen.y) ? data->res->y : (double)screen.y - 50;
+	win->win_ptr = mlx_new_window(win->mlx_ptr, data->res->x, data->res->y,
+														data->files->cub_path);
 	if (win->win_ptr == NULL)
 		return (ERROR_MLX);
 	mlx_do_key_autorepeaton(data->win->mlx_ptr);
@@ -107,6 +105,21 @@ static void	ft_compute_colors(t_data *data)
 	data->colors->f_color = ft_col_conv(data, col.r, col.g, col.b, 0);
 	ft_memcpy(&col, &data->colors->c_color_rgb, sizeof (int) * 3);
 	data->colors->c_color = ft_col_conv(data, col.r, col.g, col.b, 0);
+}
+
+static int ft_enter_game(t_data *data)
+{
+	int			ret;
+
+	ret = TRUE;
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr,
+	data->res->x / 2 - 70, data->res->y / 2, RED, "Press any key to start");
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr,
+data->res->x / 2 - 70, data->res->y / 2 + 200, RED, "Press ESC to exit game");
+	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr, 
+		data->img[SP]->ptr,	data->res->x / 2 - 32, data->res->y / 2 + 32); 
+	ret = mlx_loop(data->win->mlx_ptr);
+	return (ret);
 }
 
 int		ft_cub3d(t_data *data)
@@ -131,12 +144,6 @@ int		ft_cub3d(t_data *data)
 		ft_free_all(data, TRUE);
 	}
 	else
-	{
-		mlx_string_put(data->win->mlx_ptr, data->win->win_ptr,
-data->res->x / 2 - 70, data->res->y / 2, RED, "Press any key to start");
-		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr, 
-			data->img[SP]->ptr,	data->res->x / 2 - 32, data->res->y / 2 + 32); 
-		ret = mlx_loop(data->win->mlx_ptr);
-	}
+		ret = ft_enter_game(data);
 	return (ret);
 }

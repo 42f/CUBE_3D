@@ -1,19 +1,16 @@
 #!/bin/bash
-reset && make DEBUG=1
+reset && make
 printf "\033[0;32m\n\n[STARTING]\n\n\n"
 printf "\033[0;93m\n\n[TESTING WRONG ARGUMENTS]\n"
 
 printf "\033[0;32m NEXT : no argument\033[0m\n"
-./Cub3D
-
-printf "\033[0;32m NEXT : three argument\033[0m\n"
-./Cub3D a b
+(set -x; ./Cub3D)
 
 printf "\033[0;32m NEXT : too many arguments\033[0m\n"
-./Cub3D maps/KO_extra_player_map.cub --save extra_arg
+(set -x; ./Cub3D maps/KO_extra_player_map.cub --save extra_arg)
 
 printf "\033[0;32m NEXT : wrong flag\033[0m\n"
-./Cub3D maps/KO_extra_player_map.cub --wrong_flag
+(set -x; ./Cub3D maps/KO_extra_player_map.cub --wrong_flag)
 
 printf "\033[0;93m\n [TESTING CUB FILES...]\033[0m\n"
 

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 21:25:42 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/19 12:04:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,12 @@ int			ft_render_view(t_data *data)
 	if (data->export_flag != TRUE)
 	{
 		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-													data->img[VIEW]->ptr, 0, 0);
+												data->img[VIEW]->ptr, 0, 0);
 		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-				data->img[GUN]->ptr, data->res->x / 2 - 160, data->res->y - 168);
+			data->img[GUN]->ptr, data->res->x / 2 - data->img[GUN]->width / 2,
+			data->res->y - data->img[GUN]->height);
 	}
 	if (ret != TRUE)
 		ft_free_all(data, ret);
 	return (ret);
 }
-
