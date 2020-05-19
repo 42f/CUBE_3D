@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 18:56:47 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 21:25:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void		ft_draw_column(t_data *data, int col, t_intersect wall)
 	y_wallend = data->res->y - y_wallstart;
 	coord.y = y_wallstart;
 	coord.x = ft_get_x_coord(data, wall);
-	ft_render_background(data, col, y_wallstart, y_wallend);
+	ft_render_bg(data, col, y_wallstart, y_wallend);
 	while (coord.y <= y_wallend)
 	{
 		cursor = ft_pos(col, coord.y, data->img[VIEW]->size_line);

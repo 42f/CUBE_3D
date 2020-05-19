@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 19:57:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 21:26:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,7 +294,7 @@ int				ft_escape(t_data *data);
 
 int				ft_cub3d(t_data *data);
 int				ft_render_view(t_data *data);
-void			ft_render_background(t_data *data, int x, int y_wallstart, int y_wallend);
+void			ft_render_bg(t_data *data, int x, int y_wallstart, int y_wallend);
 int				ft_render_sprite(t_data *data);
 int				ft_import_textures(t_data *data);
 

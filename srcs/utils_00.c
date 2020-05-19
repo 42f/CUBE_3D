@@ -6,23 +6,23 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:57:12 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 19:39:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/18 22:08:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
 
-double	ft_map_alpha(double alpha)
+double		ft_map_alpha(double alpha)
 {
-	if (alpha >  360)
+	if (alpha > 360)
 		alpha = alpha - 360;
 	else if (alpha < 0)
 		alpha = alpha + 360;
 	return (alpha);
 }
 
-int	ft_col_conv(t_data *data, int r, int g, int b, int a)
+int			ft_col_conv(t_data *data, int r, int g, int b, int a)
 {
 	int			ret;
 
@@ -43,8 +43,8 @@ int	ft_col_conv(t_data *data, int r, int g, int b, int a)
 
 int	ft_cell_type(t_data *data, t_coord in, double alpha, int flag)
 {
-	int x; 
-	int y;
+	int			x; 
+	int			y;
 
 	if (flag == VERTICAL)
 	{
@@ -70,14 +70,14 @@ int	ft_cell_type(t_data *data, t_coord in, double alpha, int flag)
 		return (EMPTY);
 }
 
-int	ft_pos(int x, int y, int size_line)
+int			ft_pos(int x, int y, int size_line)
 {
 	return (x + size_line * y);
 }
 
-void	ft_imgset(int *img, int color, size_t len)
+void		ft_imgset(int *img, int color, size_t len)
 {
-	size_t	i;
+	size_t		i;
 
 	i = 0;
 	while (i < len)
@@ -125,30 +125,30 @@ double		ft_convert_alpha(double alpha_deg)
 	return (alpha_deg);
 }
 
-int             ft_add_shade(t_data *data, int color, double y)
+int			ft_add_shade(t_data *data, int color, double y)
 {
-    double          shadow;
-    t_RGB_int       new;
+	double		shadow;
+	t_RGB_int	new;
 
-    shadow = tanh(y / data->res->y);
-    if (data->win->endian == 0)
-    {
-            new.r = (color & 0x00ff0000) >> 16;
-            new.r = (double)new.r * shadow;
-            new.r <<= 16;
-            new.g = (double)((color & 0x0000ff00) >> 8) * shadow;
-            new.g <<= 8;
-            new.b = (double)(color & 0x000000ff) * shadow;
-            color = 0 | new.r | new.g | new.b;
-    }
-    else
-    {
-            new.r = (double)((color & 0x0000ff00) << 16) * shadow;
-            new.r >>= 16;
-            new.g = (double)((color & 0x00ff0000) << 8) * shadow;
-            new.r >>= 8;
-            new.b = (double)(color & 0xff000000) * shadow;
-            color = 0 | new.b | new.g | new.r;
-    }
-    return (color);
+	shadow = tanh(y / data->res->y);
+	if (data->win->endian == 0)
+	{
+		new.r = (color & 0x00ff0000) >> 16;
+		new.r = (double)new.r * shadow;
+		new.r <<= 16;
+		new.g = (double)((color & 0x0000ff00) >> 8) * shadow;
+		new.g <<= 8;
+		new.b = (double)(color & 0x000000ff) * shadow;
+		color = 0 | new.r | new.g | new.b;
+	}
+	else
+	{
+		new.r = (double)((color & 0x0000ff00) << 16) * shadow;
+		new.r >>= 16;
+		new.g = (double)((color & 0x00ff0000) << 8) * shadow;
+		new.r >>= 8;
+		new.b = (double)(color & 0xff000000) * shadow;
+		color = 0 | new.b | new.g | new.r;
+	}
+return (color);
 }

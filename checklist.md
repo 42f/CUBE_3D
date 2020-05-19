@@ -36,3 +36,17 @@ shades by columnes on floor and ceiling to be faster
 [ ] - VALID_small_without_sprites.cub
 [ ] - VALID_small_withsprites.cub
 [ ] - VALID_subjet_map.cub
+
+
+Error (line 112): function ft_cub3d has 28 lines
+Error (line 16): function ft_import_textures has 26 lines
+Error (line 18): function ft_sp_vertical has 27 lines
+Error (line 49): function ft_sp_horizontal has 26 lines
+Error (line 18): function ft_wall_vertical has 26 lines
+Error (line 48): function ft_wall_horizontal has 26 lines
+Error (line 33): function ft_colors_parser has 27 lines
+Error (line 77): function ft_locate_all_sprites has 26 lines
+Error (line 96): function ft_grid_calibrator has 26 lines
+Error (line 15): ft_set_floor have 5 parameters
+Error (line 22): ft_set_ceil have 5 parameters
+Error (line 207): ft_put_pixel have 5 parameters
