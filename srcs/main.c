@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 13:32:01 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/21 18:31:19 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int				main(int ac, char **av)
 
 	data = NULL;
 	ret = FALSE;
-	if (ac == 1 || ac > 3 || (ac == 3 && ft_memcmp(av[2], "--save", 6) != 0))
+	if (ac == 1 || ac > 3 || (ac == 3 && ft_memcmp(av[2], "--save", 7) != 0))
 	{
 		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 46);
 		return (0);
