@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:54:11 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 23:23:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/21 10:14:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ int		ft_check_data(t_data *data)
 		return (ERROR);
 	return (ft_check_files(data));
 }
-

@@ -6,12 +6,18 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 09:45:14 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 18:33:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/20 17:51:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
+
+static void	ft_set_sizes(t_data *data, int flag)
+{
+	data->img[flag]->bpp /= 8;
+	data->img[flag]->size_line /= data->img[flag]->bpp;
+}
 
 int			ft_import_textures(t_data *data)
 {
@@ -29,15 +35,14 @@ int			ft_import_textures(t_data *data)
 	flag = NO;
 	while (flag <= GUN)
 	{
-			img[flag]->ptr = mlx_xpm_file_to_image(data->win->mlx_ptr,
+		img[flag]->ptr = mlx_xpm_file_to_image(data->win->mlx_ptr,
 							path[flag], &img[flag]->width, &img[flag]->height);
 		if (img[flag]->ptr != NULL)
 			img[flag]->data = (int *)mlx_get_data_addr(img[flag]->ptr,
 					&img[flag]->bpp, &img[flag]->size_line, &data->win->endian);
 		if (img[flag]->ptr == NULL || img[flag]->data == NULL)
 			return (ERROR_TEXTURE_IMPORT);
-		img[flag]->bpp >>= 3;
-		img[flag]->size_line /= img[flag]->bpp;
+		ft_set_sizes(data, flag);
 		flag++;
 	}
 	return (TRUE);

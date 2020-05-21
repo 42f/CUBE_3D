@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/19 11:29:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/21 13:46:11 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,7 +277,10 @@ int				**ft_init_grid(int x, int y);
 int				ft_textures_parser(char *str, t_data *data);
 int				ft_is_mapdata(char *line);
 int				ft_is_onlyspaces(char *line);
-	
+int				ft_locate_all_sprites(t_data *data);
+int				ft_resolution_parser(char *str, t_data *data);
+int				ft_check_file_extension(t_data *data);
+void			ft_img_struct_init(t_data *data);
 
 /*
 ** USER INTERACTIONS 
@@ -289,13 +292,26 @@ int				ft_mouse_manager(int x, int y, void *param);
 int				ft_escape(t_data *data);
 
 /*
-** RENDERING 
+** RENDERING SPRITE
+*/
+
+void			ft_compute_sp_dist(t_data *data);
+void			ft_sort_sp_dist(t_data *data);
+void			ft_set_sp_index_len(t_data *data);
+void			ft_init_sp(t_data *data);
+void			ft_update_sp_data(t_data *data, double alpha,
+												int index, t_intersect inter);
+void			ft_get_cell_center(t_intersect *inter);
+
+/*
+** RENDERING VIEW
 */
 
 int				ft_cub3d(t_data *data);
 int				ft_render_view(t_data *data);
 void			ft_render_bg(t_data *data, int x, int y_wallstart, int y_wallend);
 int				ft_render_sprite(t_data *data);
+void			ft_render_visible_sp(t_data *data);
 int				ft_import_textures(t_data *data);
 
 void			ft_draw_map(t_data *data);
@@ -321,7 +337,7 @@ double			ft_convert_alpha(double alpha_deg);
 ** UTILS 
 */
 
-int				ft_col_conv(t_data *data, int r, int g, int b, int a);
+int				ft_col_conv(t_data *data, int r, int g, int b);
 int				ft_save_to_file(t_data *data);
 int				ft_cell_type(t_data *data, t_coord in,
 													double alpha_deg, int flag);
@@ -331,6 +347,7 @@ double			ft_torad(double x);
 void			ft_free_sprites(t_data *data, int i);
 void			ft_free_grid(t_data *data, int **grid);
 int				ft_free_all(t_data *data, int ret);
+void			ft_print_error(t_data *data, int ret);
 
 /*
 ** DEBUG 

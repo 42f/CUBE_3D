@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 14:46:47 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 19:37:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/21 12:17:46 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ t_intersect		ft_wall_vertical(t_data *data, double alpha_deg)
 		inter.coord.y += UNIT * tan(beta_rad) * sign.y;
 		output = ft_cell_type(data, inter.coord, alpha_deg, VERTICAL);
 	}
-	x_offset = fabs(data->player->x - inter.coord.x);
-	inter.dist = fabs(x_offset / cos(beta_rad));
+	inter.dist = fabs(fabs(data->player->x - inter.coord.x) / cos(beta_rad));
 	return (inter);
 }
 
@@ -70,7 +69,25 @@ t_intersect		ft_wall_horizontal(t_data *data, double alpha_deg)
 		inter.coord.x += UNIT * tan(beta_rad) * sign.x;
 		output = ft_cell_type(data, inter.coord, alpha_deg, HORIZONTAL);
 	}
-	y_offset = fabs(data->player->y - inter.coord.y);
-	inter.dist = fabs(y_offset / cos(beta_rad));
+	inter.dist = fabs(fabs(data->player->y - inter.coord.y) / cos(beta_rad));
 	return (inter);
+}
+
+t_intersect		ft_find_wall(t_data *data, double alpha)
+{
+	t_intersect	proj_hor;
+	t_intersect	proj_ver;
+
+	proj_hor = ft_wall_horizontal(data, alpha);
+	proj_ver = ft_wall_vertical(data, alpha);
+	if (proj_ver.dist < proj_hor.dist)
+	{
+		proj_ver.flag = ft_intersect_orientation(alpha, VERTICAL);
+		return (proj_ver);
+	}
+	else
+	{
+		proj_hor.flag = ft_intersect_orientation(alpha, HORIZONTAL);
+		return (proj_hor);
+	}
 }

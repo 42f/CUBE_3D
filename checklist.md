@@ -21,30 +21,3 @@ shades by columnes on floor and ceiling to be faster
 [x] - KO_open_wall_map.cub
 [x] - KO_too_high_resolution.cub
 
-
-[ ] - VALID_complex_map.cub
-[x] - VALID___complex_map_with_open_corners.cub
-[ ] - VALID_emptymap_highres.cub
-[ ] - VALID_emptymap_low_res.cub
-[ ] - VALID_large_empty_map.cub
-[ ] - VALID_one_unit_map.cub
-[ ] - VALID_one_unit_map_old_texture_64.cub
-[ ] - VALID_one_unit_map_old_texture_64_smallres.cub
-[ ] - VALID_one_unit_map_old_texture.cub
-[ ] - VALID_simple_map.cub
-[ ] - VALID_simple_sprite_map.cub
-[ ] - VALID_small_without_sprites.cub
-[ ] - VALID_small_withsprites.cub
-[ ] - VALID_subjet_map.cub
-
-
-Error (line 112): function ft_cub3d has 28 lines
-Error (line 16): function ft_import_textures has 26 lines
-Error (line 18): function ft_sp_vertical has 27 lines
-Error (line 49): function ft_sp_horizontal has 26 lines
-Error (line 18): function ft_wall_vertical has 26 lines
-Error (line 48): function ft_wall_horizontal has 26 lines
-Error (line 33): function ft_colors_parser has 27 lines
-Error (line 77): function ft_locate_all_sprites has 26 lines
-Error (line 96): function ft_grid_calibrator has 26 lines
-Error (line 207): ft_put_pixel have 5 parameters

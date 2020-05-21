@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 07:41:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 20:30:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/21 11:28:02 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <math.h>
 
-static int		ft_ismapclosed(t_data *data, int x, int y, int **map)
+static int	ft_ismapclosed(t_data *data, int x, int y, int **map)
 {
 	if (x == -1 || y == -1 || x == data->map->x || y == data->map->y)
 		return (ERROR_MAP);
@@ -74,36 +74,6 @@ static int	ft_sp_and_player_locator(t_data *data)
 	return (ret);
 }
 
-static int	ft_locate_all_sprites(t_data *data)
-{
-	static t_ints	loc;
-	static int		sp_index;
-
-	while (loc.y < data->map->y)
-	{
-		while (loc.x < data->map->x)
-		{
-			if (data->map->grid[loc.y][loc.x] == 2)
-			{
-				data->map->sp[sp_index] = malloc(sizeof (t_sprite));
-				if (data->map->sp[sp_index] == NULL)
-				{
-					ft_free_sprites(data, sp_index);
-					return (ERROR_MALLOC);
-				}
-				data->map->sp[sp_index]->coord.x = (loc.x * UNIT) + (UNIT / 2);
-				data->map->sp[sp_index]->coord.y = (loc.y * UNIT) + (UNIT / 2);
-				data->map->sp[sp_index]->id = sp_index;
-				sp_index++;
-			}
-			loc.x++;
-		}
-		loc.y++;
-		loc.x = 0;
-	}
-	return (TRUE);
-}
-
 /*
 ** ft_map_padding put walls everywhere except where the player can move
 */
@@ -120,7 +90,7 @@ static void	ft_map_padding(t_data *data, int **map_dup)
 		while (x < data->map->x)
 		{
 			if (map_dup[y][x] == 0)
-				data->map->grid[y][x] = 1;				
+				data->map->grid[y][x] = 1;
 			x++;
 		}
 		y++;
@@ -148,7 +118,7 @@ int			ft_map_checker(t_data *data)
 	ft_free_grid(data, map_dup);
 	if (ret != TRUE)
 		return (ERROR_MAP);
-	data->map->sp = malloc(sizeof (t_sprite *) * data->map->sp_qty);
+	data->map->sp = malloc(sizeof(t_sprite *) * data->map->sp_qty);
 	if (data->map->sp == NULL)
 		return (ERROR_MALLOC);
 	ret = ft_locate_all_sprites(data);

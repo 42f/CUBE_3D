@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 15:35:51 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/17 16:56:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/21 10:28:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_walls_textures(char type, char *str, t_data *data)
 	{
 		if (data->files->so_path != NULL)
 			return (ERROR_TEXTURE);
-	data->files->so_path = ft_strdup(str);
+		data->files->so_path = ft_strdup(str);
 	}
 	else if (type == 'W')
 	{
@@ -47,7 +47,7 @@ int			ft_textures_parser(char *str, t_data *data)
 	char	type;
 	int		ret;
 
-	ret = TRUE;	
+	ret = TRUE;
 	type = *str;
 	if (ft_strncmp(str, "S ", 2) == 0)
 	{

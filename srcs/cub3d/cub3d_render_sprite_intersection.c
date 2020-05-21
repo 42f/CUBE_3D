@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 14:46:47 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 19:41:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/21 09:37:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ t_intersect		ft_sp_vertical(t_data *data, double alpha_deg, t_coord origin)
 	output = ft_cell_type(data, inter.coord, alpha_deg, VERTICAL);
 	while (output == EMPTY)
 	{
-		x_offset = fabs(origin.x - inter.coord.x);
 		inter.coord.x += UNIT * sign.x;
 		inter.coord.y += UNIT * tan(beta_rad) * sign.y;
 		output = ft_cell_type(data, inter.coord, alpha_deg, VERTICAL);
 	}
 	inter.flag = output;
-	x_offset = fabs(origin.x - inter.coord.x);
-	inter.dist = fabs(x_offset / cos(beta_rad));
+	inter.dist = fabs(fabs(origin.x - inter.coord.x) / cos(beta_rad));
 	return (inter);
 }
 
@@ -71,8 +69,6 @@ t_intersect		ft_sp_horizontal(t_data *data, double alpha_deg, t_coord origin)
 		output = ft_cell_type(data, inter.coord, alpha_deg, HORIZONTAL);
 	}
 	inter.flag = output;
-	y_offset = fabs(origin.y - inter.coord.y);
-	inter.dist = fabs(y_offset / cos(beta_rad));
+	inter.dist = fabs(fabs(origin.y - inter.coord.y) / cos(beta_rad));
 	return (inter);
 }
-

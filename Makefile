@@ -27,6 +27,7 @@ S_DIR 	= srcs
 SRCS	= $(S_DIR)/debug_utils.c
 SRCS	+= $(S_DIR)/main.c
 SRCS	+= $(S_DIR)/utils_00.c
+SRCS	+= $(S_DIR)/utils_01.c
 SRCS	+= $(S_DIR)/utils_exit.c
 SRCS	+= $(S_DIR)/cub3d/cub3d.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_export_bmp.c
@@ -34,19 +35,23 @@ SRCS	+= $(S_DIR)/cub3d/cub3d_import_textures.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_key.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_key_mvmt.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_mouse_mvmt.c
-SRCS	+= $(S_DIR)/cub3d/cub3d_render_utils.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_background.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite.c
+SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_update.c
+SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_dist.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_intersection.c
+SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_draw.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_view.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_view_utils.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_wall_intersection.c
+SRCS	+= $(S_DIR)/cub3d/cub3d_struct.c
 SRCS	+= $(S_DIR)/parser/cubparser.c
 SRCS	+= $(S_DIR)/parser/cubparser_utils.c
 SRCS	+= $(S_DIR)/parser/cubparser_data_checking.c
 SRCS	+= $(S_DIR)/parser/cubparser_map_checking.c
 SRCS	+= $(S_DIR)/parser/cubparser_map_parsing.c
 SRCS	+= $(S_DIR)/parser/cubparser_textures.c
+SRCS	+= $(S_DIR)/parser/cubparser_sprite_locator.c
 
 OBJS	=	$(SRCS:.c=.o)
 

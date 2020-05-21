@@ -6,12 +6,12 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 20:50:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/21 13:32:01 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
-#include "cub3d.h" 
+#include "libft.h"
+#include "cub3d.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -81,7 +81,7 @@ static int		ft_struct_init(t_data *data)
 	return (TRUE);
 }
 
-static int	ft_execute(t_data *data)
+static int		ft_execute(t_data *data)
 {
 	int		ret;
 
@@ -91,11 +91,11 @@ static int	ft_execute(t_data *data)
 	return (ret);
 }
 
-int 		main(int ac, char **av)
+int				main(int ac, char **av)
 {
-	int 	ret;
+	int		ret;
 	t_data	*data;
-	
+
 	data = NULL;
 	ret = FALSE;
 	if (ac == 1 || ac > 3 || (ac == 3 && ft_memcmp(av[2], "--save", 6) != 0))
@@ -105,16 +105,10 @@ int 		main(int ac, char **av)
 	}
 	data = malloc(sizeof(t_data));
 	if (data == NULL)
-	{
-		write(1, "\033[0;31mError\nMalloc failed              \033[0m\n\n", 46);
-		return (0);
-	}
-	ret = ft_struct_init(data); 
+		ft_free_all(data, ERROR_MALLOC);
+	ret = ft_struct_init(data);
 	if (ret != TRUE)
-	{
-		write(1, "\033[0;31mError\nMalloc failed              \033[0m\n\n", 46);
-		return (0);
-	}
+		ft_free_all(data, ERROR_MALLOC);
 	data->files->cub_path = av[1];
 	data->export_flag = (ac == 3);
 	ret = ft_execute(data);

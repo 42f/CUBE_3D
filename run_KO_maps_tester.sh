@@ -1,6 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+
 reset && make
 printf "\033[0;32m\n\n[STARTING]\n\n\n"
+
+printf "\033[0;93m\n\n[NORMINETTE]\033[0m\n"
+~/.norminette/norminette.rb srcs/*.c srcs/*/*.c
+
 printf "\033[0;93m\n\n[TESTING WRONG ARGUMENTS]\n"
 
 printf "\033[0;32m NEXT : no argument\033[0m\n"

@@ -6,11 +6,9 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 14:39:47 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/03 18:46:59 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/21 11:26:20 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
-
-

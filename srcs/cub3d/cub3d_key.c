@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:13:10 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/18 12:14:57 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/20 18:02:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ static void	ft_standard_rotation(t_data *data, int key)
 		data->player->a = 90;
 }
 
-int		ft_escape(t_data *data)
+int			ft_escape(t_data *data)
 {
-		ft_free_all(data, TRUE);
-		return (TRUE);
+	ft_free_all(data, TRUE);
+	return (TRUE);
 }
 
-int		ft_key_hook(int key, t_data *data)
+int			ft_key_hook(int key, t_data *data)
 {
 	if (key == ESC_KEY)
-		return(ft_escape(data));
+		return (ft_escape(data));
 	if (key == A_KEY || key == S_KEY || key == D_KEY || key == W_KEY
 									|| key == RIGHT_ARROW || key == LEFT_ARROW)
 		ft_movement_dispatch(data, key);
@@ -45,4 +45,3 @@ int		ft_key_hook(int key, t_data *data)
 		ft_escape(data);
 	return (ft_render_view(data));
 }
-

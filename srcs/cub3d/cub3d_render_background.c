@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:00:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/19 11:07:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/20 18:08:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		ft_render_bg(t_data *data, int x, int y_wallstart, int y_wallend)
 	int y;
 	int	color;
 	int	half_screen;
-	
+
 	half_screen = data->res->y / 2;
 	y = 0;
 	while (y < y_wallstart)
