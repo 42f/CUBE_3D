@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 13:46:11 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/21 15:04:07 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,14 @@
 #define UNIT						64	
 #define MINIMAL_DIST				24	
 #define MOVEMENT_FACTOR				9						
-#define SOLID_SPRITE				TRUE
-#define SHADOW						TRUE
-#define SHADOW_DEPTH				150
 #define MOUSE						FALSE
+
+#ifndef SHADOW
+#define SHADOW						FALSE
+#endif
+#ifndef SOLID_SPRITE
+#define SOLID_SPRITE				FALSE
+#endif
 
 /*
 ** img index define

@@ -12,6 +12,22 @@ CFLAGS		+= -Werror
 CFLAGS		+= -Wextra
 CFLAGS		+= -g
 
+ifeq ($(SOLID_SPRITE), 1)
+DEFINE_FLAGS		+= -D SOLID_SPRITE=1
+endif
+
+ifeq ($(SOLID_SPRITE), 0)
+DEFINE_FLAGS		+= -D SOLID_SPRITE=0
+endif
+
+ifeq ($(SHADOW), 1)
+DEFINE_FLAGS		+= -D SHADOW=1
+endif
+
+ifeq ($(SHADOW), 0)
+DEFINE_FLAGS		+= -D SHADOW=0
+endif
+
 ifeq ($(DEBUG), 1)
 DEBUG_FLAGS		= -fsanitize=address
 endif
@@ -24,7 +40,6 @@ NAME		= Cub3D
 
 S_DIR 	= srcs
 
-SRCS	= $(S_DIR)/debug_utils.c
 SRCS	+= $(S_DIR)/main.c
 SRCS	+= $(S_DIR)/utils_00.c
 SRCS	+= $(S_DIR)/utils_01.c
@@ -76,27 +91,24 @@ $(NAME): $(OBJS)
 	@echo "Usage ./$@ cubfile_path [--save]\n"
 
 $(OBJS): %.o : %.c $(HEADER) $(LIBFT) $(LIBMLX)
-	$(CC) $(CFLAGS) -I $(INC) -o $@ -c $<
+	$(CC) $(CFLAGS) $(DEFINE_FLAGS) -I $(INC) -o $@ -c $<
 
-f: all
-	./$(NAME) maps/VALID_simple_map.cub
-
-cleancub:
-	@echo "\n		🚧 cleaning objetcs of cub3d...\n"
-	$(RM) $(OBJS)
-
-clean:
+lib_clean:
 	@echo "\n		🚧 cleaning objects of libft...\n"
 	make clean -C $(LIBFT_DIR)
+
+clean:
 	@echo "\n		🚧 cleaning objetcs of cub3d...\n"
 	$(RM) $(OBJS)
 
-fclean: clean
+lib_fclean:
 	@echo "\n		🚧 forced cleaning libft...\n"
 	make fclean -C $(LIBFT_DIR)
+
+fclean: clean
 	@echo "\n		🚧 forced cleaning cub3d...\n"
 	$(RM) $(NAME)
 
 re: fclean $(NAME)
 
-.PHONY: all clean re libft fclean objets f
+.PHONY: all clean re libft fclean objets lib_fclean lib_clean
