@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 12:06:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 12:08:08 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/21 15:20:19 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void		ft_draw_column(int col, int index, double alpha)
 		if (wall_dist > g_data->map->sp[i]->dist
 		&& index >= index_in
 		&& index <= index_out
-		&& g_data->map->sp[i]->dist > 35)
+		&& g_data->map->sp[i]->dist > 25)
 		{
 			ft_fill_column(col, *g_data->map->sp[i], index);
 		}

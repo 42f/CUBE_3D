@@ -1,9 +1,9 @@
 #!/bin/bash
-reset && make DEBUG=1
+reset
 printf "\033[0;32m\n\n[STARTING] test with valid maps and cub files...\n\n\n\n"
 
 printf "\033[0;32m\n Next : Valid map... no shadow, no solid sprites\033[0m\n"
-(set -x; ./Cub3D maps/VALID_map.cub)
+(set -x; make re SHADOW=0 SOLID_SPRITE=0 && ./Cub3D maps/VALID_map.cub)
 
 printf "\033[0;32m\n Next : Valid map...with shadow, with solid sprites\033[0m\n"
 (set -x; make re SHADOW=1 SOLID_SPRITE=1 && ./Cub3D maps/VALID_map.cub)
