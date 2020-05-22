@@ -34,7 +34,7 @@ printf "\033[0;32m NEXT : /KO_no_player_map.cub = map with no player inside\033[
 printf "\033[0;32m NEXT : /KO_extra_map.cub = 2 maps\033[0m\n"
 ./Cub3D maps/KO_extra_map.cub
 
-printf "\033[0;32m NEXT : /KO_bad_char_in_map.cub = char in map which is different than 0 1 2 N S W E or space\033[0m\n"
+printf "\033[0;32m NEXT : /KO_bad_char_in_map.cub = char in map which is different from 0 1 2 N S W E or space\033[0m\n"
 ./Cub3D maps/KO_bad_char_in_map.cub
 
 printf "\033[0;32m NEXT : /KO_bad_key.cub = extra key in list of textures\033[0m\n"
