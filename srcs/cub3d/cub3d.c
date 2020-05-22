@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 13:40:43 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/22 18:19:07 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_mlx_init(t_data *data)
 
 static void	ft_compute_colors(t_data *data)
 {
-	t_RGB_int	col;
+	t_rgb_int	col;
 
 	ft_memcpy(&col, &data->colors->f_color_rgb, sizeof(int) * 3);
 	data->colors->f_color = ft_col_conv(data, col.r, col.g, col.b);

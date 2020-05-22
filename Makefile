@@ -4,7 +4,7 @@ CC			= clang
 INC			= includes
 LIBFT_DIR	:= ./libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
-MLX_DIR		:= ./minilibx-Linux/
+MLX_DIR		:= ./minilibx-linux/
 LIBMLX		:= $(MLX_DIR)libmlx.a
 
 CFLAGS		+= -Wall

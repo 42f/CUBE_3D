@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 10:32:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 11:01:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/22 18:12:53 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <fcntl.h>
 
-static void		ft_colors_set(t_data *data, int flag, t_RGB_int col)
+static void		ft_colors_set(t_data *data, int flag, t_rgb_int col)
 {
 	if (flag == FLOOR)
 	{
@@ -30,7 +30,7 @@ static void		ft_colors_set(t_data *data, int flag, t_RGB_int col)
 
 static int		ft_colors_parser(char *str, t_data *data)
 {
-	t_RGB_int	col;
+	t_rgb_int	col;
 	char		type;
 
 	type = *str;

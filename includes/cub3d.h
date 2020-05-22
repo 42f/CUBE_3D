@@ -6,158 +6,148 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 15:04:07 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/22 18:21:26 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef CUB3D_H
+# define CUB3D_H
 
-#ifndef CUB3d_H
-# define CUB3d_H
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
-// TO REMOVE -----------------
-// TO REMOVE -----------------
-#include <stdio.h>
-#include "libft.h"
-#include "mlx.h"
-// TO REMOVE -----------------
-// TO REMOVE -----------------
+/*
+** CONTROLE GAME EXPERIENCE DEFINES
+*/
 
+# define UNIT						64
+# define MINIMAL_DIST				24
+# define MOVEMENT_FACTOR			9
+# define MOUSE						FALSE
 
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+# ifndef SHADOW
+#  define SHADOW					FALSE
+# endif
+
+# ifndef SOLID_SPRITE
+#  define SOLID_SPRITE				FALSE
+# endif
 
 /*
 ** boolean defines
 */
 
-#define FALSE						0
-#define SUCCESS						1
-#define TRUE						1
+# define FALSE						0
+# define SUCCESS					1
+# define TRUE						1
 
 /*
 ** errors defines
 */
 
-#define ERROR						-1
-#define ERROR_MALLOC				-2
-#define ERROR_MALLOC_IM				-3
-#define ERROR_MLX					-4
-#define ERROR_EXPORT				-5
-#define ERROR_FILE					-6
-#define ERROR_MAP					-7
-#define ERROR_TEXTURE				-8
-#define ERROR_PLAYER				-9
-#define ERROR_TEXTURE_IMPORT		-10
+# define ERROR						-1
+# define ERROR_MALLOC				-2
+# define ERROR_MALLOC_IM			-3
+# define ERROR_MLX					-4
+# define ERROR_EXPORT				-5
+# define ERROR_FILE					-6
+# define ERROR_MAP					-7
+# define ERROR_TEXTURE				-8
+# define ERROR_PLAYER				-9
+# define ERROR_TEXTURE_IMPORT		-10
 
 /*
 ** keys for movements defines
 */
 
-#define LEFT_ARROW					65361
-#define RIGHT_ARROW					65363
-#define NUMPAD_2					65433
-#define NUMPAD_4					65430
-#define NUMPAD_6					65432
-#define NUMPAD_8					65431
-#define A_KEY						97
-#define S_KEY						115
-#define D_KEY						100
-#define W_KEY						119
-#define M_KEY						109
-#define ESC_KEY						0xff1b
+# define LEFT_ARROW					65361
+# define RIGHT_ARROW				65363
+# define NUMPAD_2					65433
+# define NUMPAD_4					65430
+# define NUMPAD_6					65432
+# define NUMPAD_8					65431
+# define A_KEY						97
+# define S_KEY						115
+# define D_KEY						100
+# define W_KEY						119
+# define M_KEY						109
+# define ESC_KEY					0xff1b
 
-#define VERTICAL					1
-#define HORIZONTAL					2
+# define VERTICAL					1
+# define HORIZONTAL					2
 
 /*
 ** colors defines
 */
 
-#define BLUE						0x000000FF
-#define GREEN						0x0000FF00
-#define RED							0x00FF0000
-#define WHITE						0x00FFFFFF
-
-/*
-** miscellaneous defines
-*/
-
-#define UNIT						64	
-#define MINIMAL_DIST				24	
-#define MOVEMENT_FACTOR				9						
-#define MOUSE						FALSE
-
-#ifndef SHADOW
-#define SHADOW						FALSE
-#endif
-#ifndef SOLID_SPRITE
-#define SOLID_SPRITE				FALSE
-#endif
+# define BLUE						0x000000FF
+# define GREEN						0x0000FF00
+# define RED						0x00FF0000
+# define WHITE						0x00FFFFFF
 
 /*
 ** img index define
 */
 
-#define NO							0
-#define SO							1
-#define EA							2
-#define WE							3
-#define SP							4
-#define GUN 						5
-#define VIEW						6
+# define NO							0
+# define SO							1
+# define EA							2
+# define WE							3
+# define SP							4
+# define GUN 						5
+# define VIEW						6
 
 /*
 ** objects flags for ft_vertical and ft_horizontal
 */
 
-#define EMPTY						0
-#define WALL						1
-#define SPRITE						2
-#define V_WALL						3
-#define H_WALL						4
-#define V_SPRITE					5
-#define H_SPRITE					6
+# define EMPTY						0
+# define WALL						1
+# define SPRITE						2
+# define V_WALL						3
+# define H_WALL						4
+# define V_SPRITE					5
+# define H_SPRITE					6
 
 /*
 ** color parser flags
 */
 
-#define FLOOR						0
-#define CEILING						1
+# define FLOOR						0
+# define CEILING					1
 
-
-typedef struct		s_bmpheader
+typedef struct	s_bmpheader
 {
-	short	bfType;
-	int		bfSize;
-	short	bfReserved1;
-	short	bfReserved2;
-	int		bfOffBits;
-}					t_bmpheader;
+	short		bftype;
+	int			bfsize;
+	short		bfreserved1;
+	short		bfreserved2;
+	int			bfoffbits;
+}				t_bmpheader;
 
-typedef struct 		s_bmpinfo
+typedef struct	s_bmpinfo
 {
-	int		biSize;
-	int		biWidth;
-	int		biHeight;
-	short	biPlanes;
-	short	biBitCount;
-	int		biCompression;
-	int		biSizeImage;
-	int		biXPelsPerMeter;
-	int		biYPelsPerMeter;
-	int		biClrUsed;
-	int		biClrImportant;
-} 					t_bmpinfo;
+	int			bisize;
+	int			biwidth;
+	int			biheight;
+	short		biplanes;
+	short		bibitcount;
+	int			bicompression;
+	int			bisizeimage;
+	int			bixpelspermeter;
+	int			biypelspermeter;
+	int			biclrused;
+	int			biclrimportant;
+}				t_bmpinfo;
 
-typedef	struct		s_RGB_int
+typedef	struct	s_rgb_int
 {
-	int		r;
-	int		g;
-	int		b;
-	int		a;
-}					t_RGB_int;
+	int			r;
+	int			g;
+	int			b;
+	int			a;
+}				t_rgb_int;
 
 typedef struct	s_coordinates
 {
@@ -197,7 +187,7 @@ typedef struct	s_res
 }				t_res;
 
 /*
-**	t_data members 
+**	t_data members
 */
 
 typedef struct	s_files
@@ -212,9 +202,9 @@ typedef struct	s_files
 
 typedef struct	s_colors
 {
-	t_RGB_int	f_color_rgb;
+	t_rgb_int	f_color_rgb;
 	int			f_color;
-	t_RGB_int	c_color_rgb;
+	t_rgb_int	c_color_rgb;
 	int			c_color;
 }				t_colors;
 
@@ -224,7 +214,6 @@ typedef struct	s_window
 	void		*win_ptr;
 	int			endian;
 }				t_window;
-
 
 typedef struct	s_map
 {
@@ -259,7 +248,7 @@ typedef struct	s_data
 {
 	t_window	*win;
 	t_res		*res;
-	t_colors	*colors;	
+	t_colors	*colors;
 	t_map		*map;
 	t_player	*player;
 	t_files		*files;
@@ -267,12 +256,11 @@ typedef struct	s_data
 	short		export_flag;
 }				t_data;
 
-
 /*
 ** PARSER
 */
 
-int 			ft_parser(t_data *data);
+int				ft_parser(t_data *data);
 int				ft_check_data(t_data *data);
 int				ft_check_files(t_data *data);
 int				ft_map_parser(t_data *data, int fd);
@@ -287,7 +275,7 @@ int				ft_check_file_extension(t_data *data);
 void			ft_img_struct_init(t_data *data);
 
 /*
-** USER INTERACTIONS 
+** USER INTERACTIONS
 */
 
 int				ft_movement_dispatch(t_data *data, int key);
@@ -313,24 +301,25 @@ void			ft_get_cell_center(t_intersect *inter);
 
 int				ft_cub3d(t_data *data);
 int				ft_render_view(t_data *data);
-void			ft_render_bg(t_data *data, int x, int y_wallstart, int y_wallend);
+void			ft_render_bg(t_data *data, int x, int y_wallstart,
+																int y_wallend);
 int				ft_render_sprite(t_data *data);
 void			ft_render_visible_sp(t_data *data);
 int				ft_import_textures(t_data *data);
 
 void			ft_draw_map(t_data *data);
 int				ft_get_shade(double dist);
-int             ft_add_shade(t_data *data, int color, double y);
+int				ft_add_shade(t_data *data, int color, double y);
 
 t_intersect		ft_find_wall(t_data *data, double alpha);
 t_intersect		ft_wall_vertical(t_data *data, double alpha_deg);
 t_intersect		ft_wall_horizontal(t_data *data, double alpha_deg);
 t_intersect		ft_sp_vertical(t_data *data, double alpha_deg, t_coord origin);
-t_intersect		ft_sp_horizontal(t_data *data, double alpha_deg, t_coord origin);
-
+t_intersect		ft_sp_horizontal(t_data *data, double alpha_deg,
+																t_coord origin);
 
 /*
-** RENDER_UTILS 
+** RENDER_UTILS
 */
 
 int				ft_intersect_orientation(double alpha, int orientation_flag);
@@ -338,7 +327,7 @@ double			ft_map_alpha(double alpha);
 double			ft_convert_alpha(double alpha_deg);
 
 /*
-** UTILS 
+** UTILS
 */
 
 int				ft_col_conv(t_data *data, int r, int g, int b);
@@ -354,11 +343,11 @@ int				ft_free_all(t_data *data, int ret);
 void			ft_print_error(t_data *data, int ret);
 
 /*
-** DEBUG 
+** DEBUG
 */
 
-void	debug_print_spdata(t_data *data);
-void 	debug_printgrid(t_data *data, int **map);
-void	debug_printdata(t_data *data, int ret);
-void	debug_checkgrid(double x, double y, t_data *data, int factor);
+void			debug_print_spdata(t_data *data);
+void			debug_printgrid(t_data *data, int **map);
+void			debug_printdata(t_data *data, int ret);
+void			debug_checkgrid(double x, double y, t_data *data, int factor);
 #endif

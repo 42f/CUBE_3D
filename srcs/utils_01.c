@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 13:32:59 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 13:47:58 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/22 18:11:50 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_imgset(int *img, int color, size_t len)
 int		ft_add_shade(t_data *data, int color, double y)
 {
 	double		shadow;
-	t_RGB_int	new;
+	t_rgb_int	new;
 
 	shadow = tanh(y / data->res->y);
 	if (data->win->endian == 0)
