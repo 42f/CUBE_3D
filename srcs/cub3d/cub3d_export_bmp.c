@@ -6,12 +6,11 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 17:14:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/22 18:20:26 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 20:01:21 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
 #include <stdlib.h>
 #include <fcntl.h>
 

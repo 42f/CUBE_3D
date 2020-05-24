@@ -6,13 +6,11 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 07:41:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 11:28:02 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 20:07:49 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
-#include <math.h>
 
 static int	ft_ismapclosed(t_data *data, int x, int y, int **map)
 {

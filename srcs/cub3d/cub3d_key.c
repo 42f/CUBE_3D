@@ -6,13 +6,11 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:13:10 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/20 18:02:48 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/24 20:01:53 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "cub3d.h"
-#include "mlx.h"
 
 static void	ft_standard_rotation(t_data *data, int key)
 {

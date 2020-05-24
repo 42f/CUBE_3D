@@ -6,14 +6,13 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/22 18:19:07 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 20:11:02 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
 #include "mlx.h"
-#include <math.h>
 
 static void	ft_img_init(t_data *data)
 {

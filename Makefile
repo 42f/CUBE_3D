@@ -12,7 +12,7 @@ LIBMLX		:= $(MLX_DIR)libmlx.a
 CFLAGS		+= -Wall
 CFLAGS		+= -Werror
 CFLAGS		+= -Wextra
-CFLAGS		+= -g
+CFLAGS		+= -Ofast
 
 ifeq ($(SOLID_SPRITE), 1)
 DEFINE_FLAGS		+= -D SOLID_SPRITE=1
@@ -57,7 +57,6 @@ SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_dist.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_intersection.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_draw.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_view.c
-SRCS	+= $(S_DIR)/cub3d/cub3d_render_view_utils.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_wall_intersection.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_struct.c
 SRCS	+= $(S_DIR)/parser/cubparser.c

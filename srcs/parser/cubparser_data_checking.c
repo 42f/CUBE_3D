@@ -6,13 +6,11 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:54:11 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 10:14:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/24 20:07:01 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "cub3d.h"
-#include <stdlib.h>
 #include <fcntl.h>
 
 int		ft_check_files(t_data *data)

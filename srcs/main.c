@@ -6,14 +6,12 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 18:31:19 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 20:09:10 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cub3d.h"
-#include <unistd.h>
-#include <stdio.h>
 #include <fcntl.h>
 
 static void		ft_struct_values(t_data *data)

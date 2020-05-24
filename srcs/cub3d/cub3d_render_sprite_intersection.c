@@ -6,14 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 14:46:47 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 09:37:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/24 20:03:32 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx.h"
 #include <math.h>
-#include <limits.h>
 
 t_intersect		ft_sp_vertical(t_data *data, double alpha_deg, t_coord origin)
 {

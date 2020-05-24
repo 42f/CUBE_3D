@@ -6,13 +6,12 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 09:00:54 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 10:27:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/24 20:08:31 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cub3d.h"
-#include <stdlib.h>
 #include <fcntl.h>
 
 static void	ft_parse_line(t_data *data, char *line, int y)
