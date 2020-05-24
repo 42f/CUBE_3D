@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 20:09:10 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 22:14:42 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static int		ft_execute(t_data *data)
 {
 	int		ret;
 
+	data->game_started = FALSE;
 	ret = ft_parser(data);
 	if (ret == TRUE)
 		ret = ft_cub3d(data);

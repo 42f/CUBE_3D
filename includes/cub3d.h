@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 19:55:30 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 22:01:57 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,7 @@ typedef struct	s_data
 	t_files		*files;
 	t_img		**img;
 	short		export_flag;
+	short		game_started;
 }				t_data;
 
 /*
