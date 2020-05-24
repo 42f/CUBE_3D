@@ -1,4 +1,6 @@
 
+NAME		= cub3D
+
 CC			= clang
 
 INC			= includes
@@ -35,8 +37,6 @@ endif
 ifeq ($(DEBUG_UNDEF), 1)
 DEBUG_FLAGS		= -fsanitize=undefined
 endif
-
-NAME		= Cub3D
 
 S_DIR 	= srcs
 
