@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 23:07:51 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:20:41 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,10 @@ int			ft_render_view(t_data *data)
 		data->img[GUN]->ptr, data->res->x / 2 - data->img[GUN]->width / 2,
 		data->res->y - data->img[GUN]->height);
 			mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
-		data->img[HUD]->ptr, data->res->x / 2 - data->img[HUD]->width / 2,
-		data->res->y / 2 - data->img[HUD]->height / 2);
+		data->img[TARGET]->ptr, data->res->x / 2 - data->img[TARGET]->width / 2,
+		data->res->y / 2 - data->img[TARGET]->height / 2);
+			mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
+		data->img[LIFEBAR]->ptr, 10, 10);
 		}
 		if (ret != TRUE)
 			ft_free_all(data, ret);

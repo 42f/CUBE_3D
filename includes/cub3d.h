@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 23:30:12 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:15:46 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdlib.h>
 # include <string.h>
-#include <stdio.h>
 # include <unistd.h>
+# include <stdio.h>
 
 /*
 ** CONTROLE GAME EXPERIENCE DEFINES
@@ -26,6 +26,9 @@
 # define MINIMAL_DIST				24
 # define MOVEMENT_FACTOR			9
 # define MOUSE						FALSE
+# define HUD_PATH_GUN				"./assets/HUD/gun.xpm"
+# define HUD_PATH_TARGET			"./assets/HUD/target.xpm"
+# define HUD_PATH_LIFEBAR			"./assets/HUD/life_bar.xpm"
 
 # ifndef SHADOW
 #  define SHADOW					FALSE
@@ -34,6 +37,26 @@
 # ifndef SOLID_SPRITE
 #  define SOLID_SPRITE				FALSE
 # endif
+
+/*
+** img index define
+*/
+
+# define NO							0
+# define SO							1
+# define EA							2
+# define WE							3
+# define SP							4
+
+# define GUN 						5
+# define TARGET						6
+# define LIFEBAR					7
+
+# define VIEW						8
+
+# define NBR_OF_USER_DEFINED_XPM	5
+# define NBR_OF_XPM					8
+# define NBR_OF_IMAGES				9
 
 /*
 ** boolean defines
@@ -62,17 +85,17 @@
 ** keys for movements defines
 */
 
-# define LEFT_ARROW					65361
-# define RIGHT_ARROW				65363
-# define NUMPAD_2					65433
-# define NUMPAD_4					65430
-# define NUMPAD_6					65432
-# define NUMPAD_8					65431
-# define A_KEY						97
-# define S_KEY						115
-# define D_KEY						100
-# define W_KEY						119
-# define M_KEY						109
+# define LEFT_ARROW					0xff51
+# define RIGHT_ARROW				0xff53
+# define NUMPAD_2					0xff99
+# define NUMPAD_4					0xff96
+# define NUMPAD_6					0xff98
+# define NUMPAD_8					0xff97
+# define A_KEY						0x0061
+# define S_KEY						0x0073
+# define D_KEY						0x006e
+# define W_KEY						0x0077
+# define M_KEY						0x006d
 # define ESC_KEY					0xff1b
 
 # define VERTICAL					1
@@ -86,19 +109,6 @@
 # define GREEN						0x0000FF00
 # define RED						0x00FF0000
 # define WHITE						0x00FFFFFF
-
-/*
-** img index define
-*/
-
-# define NO							0
-# define SO							1
-# define EA							2
-# define WE							3
-# define SP							4
-# define GUN 						5
-# define HUD						6
-# define VIEW						7
 
 /*
 ** objects flags for ft_vertical and ft_horizontal
@@ -195,11 +205,7 @@ typedef struct	s_res
 typedef struct	s_files
 {
 	char		*cub_path;
-	char		*no_path;
-	char		*so_path;
-	char		*we_path;
-	char		*ea_path;
-	char		*sp_path;
+	char		*xpm_path[NBR_OF_XPM];
 }				t_files;
 
 typedef struct	s_colors
@@ -265,7 +271,6 @@ typedef struct	s_data
 
 int				ft_parser(t_data *data);
 int				ft_check_data(t_data *data);
-int				ft_check_files(t_data *data);
 int				ft_map_parser(t_data *data, int fd);
 int				ft_map_checker(t_data *data);
 int				**ft_init_grid(int x, int y);

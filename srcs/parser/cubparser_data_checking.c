@@ -6,53 +6,32 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:54:11 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 20:07:01 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:01:26 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <fcntl.h>
 
-int		ft_check_files(t_data *data)
+int		ft_check_data(t_data *data)
 {
+	int 	i;
 	int		fd;
-	char	*files[5];
-	int		i;
 
-	files[0] = data->files->sp_path;
-	files[1] = data->files->no_path;
-	files[2] = data->files->so_path;
-	files[3] = data->files->ea_path;
-	files[4] = data->files->we_path;
 	i = 0;
-	while (i <= 4)
+	while (i < NBR_OF_XPM)
 	{
-		fd = open(files[i], O_RDONLY);
+		if (data->files->xpm_path[i] == NULL)
+			return (ERROR);
+		fd = open(data->files->xpm_path[i], O_RDONLY);
 		if (fd == ERROR)
 			return (ERROR_TEXTURE);
 		close(fd);
 		i++;
 	}
-	return (TRUE);
-}
-
-int		ft_check_data(t_data *data)
-{
-	if (data->map->set != TRUE)
-		return (ERROR);
-	if (data->files->sp_path == NULL)
-		return (ERROR);
-	if (data->files->no_path == NULL)
-		return (ERROR);
-	if (data->files->so_path == NULL)
-		return (ERROR);
-	if (data->files->ea_path == NULL)
-		return (ERROR);
-	if (data->files->we_path == NULL)
-		return (ERROR);
 	if (data->colors->f_color == -1 || data->colors->c_color == -1)
 		return (ERROR);
 	if (data->res->x < 1 || data->res->y < 1 || data->map->set != TRUE)
 		return (ERROR);
-	return (ft_check_files(data));
+	return (TRUE);
 }

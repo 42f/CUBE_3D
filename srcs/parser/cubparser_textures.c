@@ -6,39 +6,25 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 15:35:51 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/21 10:28:46 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/25 12:27:01 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cub3d.h"
 
-static int	ft_walls_textures(char type, char *str, t_data *data)
+static int	ft_get_walls_textures_paths(char type, char *str, t_data *data)
 {
-	if (type == 'N')
-	{
-		if (data->files->no_path != NULL)
-			return (ERROR_TEXTURE);
-		data->files->no_path = ft_strdup(str);
-	}
-	else if (type == 'S')
-	{
-		if (data->files->so_path != NULL)
-			return (ERROR_TEXTURE);
-		data->files->so_path = ft_strdup(str);
-	}
-	else if (type == 'W')
-	{
-		if (data->files->we_path != NULL)
-			return (ERROR_TEXTURE);
-		data->files->we_path = ft_strdup(str);
-	}
-	else if (type == 'E')
-	{
-		if (data->files->ea_path != NULL)
-			return (ERROR_TEXTURE);
-		data->files->ea_path = ft_strdup(str);
-	}
+	char	*type_set;
+	int		i;
+
+	type_set = "NSEW";
+	i = 0;
+	while (i < 4 && type != type_set[i])
+		i++;
+	if (data->files->xpm_path[i] != NULL)
+		return (ERROR_TEXTURE);
+	data->files->xpm_path[i] = ft_strdup(str);
 	return (TRUE);
 }
 
@@ -54,7 +40,7 @@ int			ft_textures_parser(char *str, t_data *data)
 		str++;
 		while (*str != '\0' && *str == ' ')
 			str++;
-		data->files->sp_path = ft_strdup(str);
+		data->files->xpm_path[SP] = ft_strdup(str);
 	}
 	else
 	{
@@ -62,7 +48,7 @@ int			ft_textures_parser(char *str, t_data *data)
 			str++;
 		while (*str != '\0' && *str == ' ')
 			str++;
-		ret = ft_walls_textures(type, str, data);
+		ret = ft_get_walls_textures_paths(type, str, data);
 	}
 	return (ret);
 }

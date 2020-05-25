@@ -4,7 +4,7 @@ reset && make
 printf "\033[0;32m\n\n[STARTING]\n\n\n"
 
 printf "\033[0;93m\n\n[NORMINETTE]\033[0m\n"
-~/.norminette/norminette.rb srcs/*.c srcs/*/*.c includes/cub3d.h
+#~/.norminette/norminette.rb srcs/*.c srcs/*/*.c includes/cub3d.h
 
 printf "\033[0;93m\n\n[TESTING WRONG ARGUMENTS]\n"
 

@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 09:45:14 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 23:52:16 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 11:54:04 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,13 @@ static void	ft_set_sizes(t_data *data, int flag)
 int			ft_import_textures(t_data *data)
 {
 	t_img		**img;
-	char		*path[7];
 	int			flag;
 	
 	img = data->img;
-	path[NO] = data->files->no_path;
-	path[SO] = data->files->so_path;
-	path[EA] = data->files->ea_path;
-	path[WE] = data->files->we_path;
-	path[SP] = data->files->sp_path;
-	path[GUN] = "./assets/gun/gun3.xpm";
-	path[HUD] = "./assets/gun/HUD.xpm";
-	flag = NO;
-	while (flag <= HUD)
+	flag = 0;
+	while (flag < NBR_OF_XPM)
 	{
-		ft_import_assets(data, img[flag], path[flag]);
+		ft_import_assets(data, img[flag], data->files->xpm_path[flag]);
 		if (img[flag]->ptr == NULL || img[flag]->data == NULL)
 			return (ft_failed_import(data, flag));
 		ft_set_sizes(data, flag);

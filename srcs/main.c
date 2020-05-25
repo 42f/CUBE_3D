@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 22:59:24 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:18:46 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ static void		ft_struct_values(t_data *data)
 {
 	data->win->mlx_ptr = NULL;
 	data->win->win_ptr = NULL;
-	data->files->no_path = NULL;
-	data->files->sp_path = NULL;
-	data->files->so_path = NULL;
-	data->files->we_path = NULL;
-	data->files->ea_path = NULL;
+	ft_memset(data->files->xpm_path, 0, NBR_OF_XPM);
+	data->files->xpm_path[GUN] = HUD_PATH_GUN;
+	data->files->xpm_path[TARGET] = HUD_PATH_TARGET;
+	data->files->xpm_path[LIFEBAR] = HUD_PATH_LIFEBAR;
 	data->map->set = FALSE;
 	data->map->grid = NULL;
 	data->map->sp = NULL;
@@ -72,7 +71,7 @@ static int		ft_struct_init(t_data *data)
 	data->files = malloc(sizeof(t_files));
 	if (data->files == NULL)
 		return (ft_struct_failure(data, 5));
-	data->img = malloc(sizeof(t_img *) * 8);
+	data->img = malloc(sizeof(t_img *) * NBR_OF_IMAGES);
 	if (data->img == NULL)
 		return (ft_struct_failure(data, 6));
 	ft_struct_values(data);
