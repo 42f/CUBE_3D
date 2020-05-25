@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 12:15:46 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:45:09 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdio.h>
-
+# include<stdio.h>
 /*
 ** CONTROLE GAME EXPERIENCE DEFINES
 */
@@ -85,15 +84,17 @@
 ** keys for movements defines
 */
 
+# define UP_ARROW					0xff52
+# define DOWN_ARROW					0xff54
 # define LEFT_ARROW					0xff51
 # define RIGHT_ARROW				0xff53
-# define NUMPAD_2					0xff99
-# define NUMPAD_4					0xff96
-# define NUMPAD_6					0xff98
-# define NUMPAD_8					0xff97
+# define NUMPAD_2					0x0000ff99
+# define NUMPAD_4					0x0000ff96
+# define NUMPAD_6					0x0000ff98
+# define NUMPAD_8					0x0000ff97
 # define A_KEY						0x0061
 # define S_KEY						0x0073
-# define D_KEY						0x006e
+# define D_KEY						0x0064
 # define W_KEY						0x0077
 # define M_KEY						0x006d
 # define ESC_KEY					0xff1b
@@ -240,6 +241,7 @@ typedef struct	s_player
 	double		x;
 	double		y;
 	double		a;
+	int			sight_lever;
 }				t_player;
 
 typedef struct	s_img

@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 08:54:11 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 12:01:26 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:30:37 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int		ft_check_data(t_data *data)
 {
-	int 	i;
-	int		fd;
+	int	i;
+	int	fd;
 
 	i = 0;
 	while (i < NBR_OF_XPM)

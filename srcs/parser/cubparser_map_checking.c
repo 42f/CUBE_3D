@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 07:41:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 20:07:49 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:45:36 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static int	ft_player_set(int x, int y, t_data *data, char orientation)
 	data->player->a = (orientation == 'S') ? 270 : data->player->a;
 	data->player->x = (double)x;
 	data->player->y = (double)y;
+	data->player->sight_lever = 0;
 	return (TRUE);
 }
 

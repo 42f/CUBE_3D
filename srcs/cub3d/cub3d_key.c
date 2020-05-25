@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:13:10 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 20:01:53 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:55:56 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,16 @@ int			ft_escape(t_data *data)
 
 int			ft_key_hook(int key, t_data *data)
 {
+printf("%d\n", key);
 	if (key == ESC_KEY)
 		return (ft_escape(data));
 	if (key == A_KEY || key == S_KEY || key == D_KEY || key == W_KEY
 									|| key == RIGHT_ARROW || key == LEFT_ARROW)
 		ft_movement_dispatch(data, key);
-	else if (key >= NUMPAD_2 && key <= NUMPAD_8)
+	else if (key == UP_ARROW || key == DOWN_ARROW)
+		
+	else if (key == NUMPAD_2 || key == NUMPAD_4
+									|| key == NUMPAD_6|| key == NUMPAD_8)
 		ft_standard_rotation(data, key);
 	else if (key == ESC_KEY)
 		ft_escape(data);

@@ -6,14 +6,14 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 09:45:14 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 11:54:04 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:30:06 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
 
-static void ft_import_assets(t_data *data, t_img *img, char *path)
+static void	ft_import_assets(t_data *data, t_img *img, char *path)
 {
 	img->ptr = mlx_xpm_file_to_image(data->win->mlx_ptr, path,
 													&img->width, &img->height);
@@ -45,7 +45,7 @@ int			ft_import_textures(t_data *data)
 {
 	t_img		**img;
 	int			flag;
-	
+
 	img = data->img;
 	flag = 0;
 	while (flag < NBR_OF_XPM)

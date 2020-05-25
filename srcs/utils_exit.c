@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 12:02:32 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 12:29:10 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	ft_free_all_end(t_data *data, int ret)
 int			ft_free_all(t_data *data, int ret)
 {
 	int	flag;
-	
+
 	ft_print_error(data, ret);
 	if (ret != ERROR_MALLOC && ret != ERROR_FILE)
 	{
