@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 12:45:09 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 16:04:09 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 # define MINIMAL_DIST				24
 # define MOVEMENT_FACTOR			9
 # define MOUSE						FALSE
-# define HUD_PATH_GUN				"./assets/HUD/gun.xpm"
+# define HUD_PATH_GUN_0				"./assets/HUD/GUN_0.xpm"
+# define HUD_PATH_GUN_1				"./assets/HUD/GUN_1.xpm"
+# define HUD_PATH_GUN_2				"./assets/HUD/GUN_2.xpm"
 # define HUD_PATH_TARGET			"./assets/HUD/target.xpm"
 # define HUD_PATH_LIFEBAR			"./assets/HUD/life_bar.xpm"
 
@@ -47,15 +49,17 @@
 # define WE							3
 # define SP							4
 
-# define GUN 						5
-# define TARGET						6
-# define LIFEBAR					7
+# define GUN_0 						5
+# define GUN_1 						6
+# define GUN_2 						7
+# define TARGET						8
+# define LIFEBAR					9
 
-# define VIEW						8
+# define VIEW						10
 
 # define NBR_OF_USER_DEFINED_XPM	5
-# define NBR_OF_XPM					8
-# define NBR_OF_IMAGES				9
+# define NBR_OF_XPM					10
+# define NBR_OF_IMAGES				11
 
 /*
 ** boolean defines
@@ -84,6 +88,7 @@
 ** keys for movements defines
 */
 
+# define SPACE_KEY					0x0020
 # define UP_ARROW					0xff52
 # define DOWN_ARROW					0xff54
 # define LEFT_ARROW					0xff51
@@ -238,10 +243,10 @@ typedef struct	s_map
 
 typedef struct	s_player
 {
+	int			fire;
 	double		x;
 	double		y;
 	double		a;
-	int			sight_lever;
 }				t_player;
 
 typedef struct	s_img
@@ -290,6 +295,7 @@ void			ft_img_struct_init(t_data *data);
 
 int				ft_movement_dispatch(t_data *data, int key);
 int				ft_key_hook(int key, t_data *data);
+int				ft_key_release_hook(int key, t_data *data);
 int				ft_mouse_manager(int x, int y, void *param);
 int				ft_escape(t_data *data);
 

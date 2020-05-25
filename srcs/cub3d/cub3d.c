@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 23:32:30 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 16:04:38 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ static int	ft_mlx_init(t_data *data)
 														data->files->cub_path);
 	if (win->win_ptr == NULL)
 		return (ERROR_MLX);
-	mlx_do_key_autorepeaton(data->win->mlx_ptr);
-	mlx_hook(win->win_ptr, 7, (1L << 0), ft_mouse_manager, data);
 	mlx_hook(win->win_ptr, 2, (1L << 0), ft_key_hook, data);
+	mlx_hook(win->win_ptr, 3, (1L << 1), ft_key_release_hook, data);
 	mlx_hook(win->win_ptr, 17, (1L << 17), ft_escape, data);
 	mlx_hook(win->win_ptr, 12, (1L << 15), ft_enter_game, data);
 	mlx_expose_hook(data->win->win_ptr, ft_render_view, data);

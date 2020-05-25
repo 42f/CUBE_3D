@@ -6,20 +6,12 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:13:10 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 13:55:55 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 16:04:05 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_ichange_sight_level(t_data *data, int key)
-{
-	if (key == UP_ARROW)
-		data->player->sight_level += 10;
-	else if (key == DOWN_ARROW)
-		data->player->sight_level -= 10;
-	printf("data->sight %f". data->player->sight_level);
-}
 static void	ft_standard_rotation(t_data *data, int key)
 {
 	if (key == NUMPAD_2)
@@ -38,16 +30,22 @@ int			ft_escape(t_data *data)
 	return (TRUE);
 }
 
+int			ft_key_release_hook(int key, t_data *data)
+{
+	if (key == SPACE_KEY)
+		data->player->fire = FALSE;
+	return (ft_render_view(data));
+}
+
 int			ft_key_hook(int key, t_data *data)
 {
-printf("%d\n", key);
 	if (key == ESC_KEY)
 		return (ft_escape(data));
 	if (key == A_KEY || key == S_KEY || key == D_KEY || key == W_KEY
 									|| key == RIGHT_ARROW || key == LEFT_ARROW)
 		ft_movement_dispatch(data, key);
-	else if (key == UP_ARROW || key == DOWN_ARROW)
-		ft_change_shight_lever(data, key);		
+	else if (key == SPACE_KEY)
+		data->player->fire = TRUE;	
 	else if (key == NUMPAD_2 || key == NUMPAD_4
 									|| key == NUMPAD_6|| key == NUMPAD_8)
 		ft_standard_rotation(data, key);

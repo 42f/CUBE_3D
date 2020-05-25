@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 12:18:46 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 15:33:12 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ static void		ft_struct_values(t_data *data)
 {
 	data->win->mlx_ptr = NULL;
 	data->win->win_ptr = NULL;
-	ft_memset(data->files->xpm_path, 0, NBR_OF_XPM);
-	data->files->xpm_path[GUN] = HUD_PATH_GUN;
+	ft_memset(data->files->xpm_path, 0, sizeof(char *) * NBR_OF_XPM);
+	data->files->xpm_path[GUN_0] = HUD_PATH_GUN_0;
+	data->files->xpm_path[GUN_1] = HUD_PATH_GUN_1;
+	data->files->xpm_path[GUN_2] = HUD_PATH_GUN_2;
 	data->files->xpm_path[TARGET] = HUD_PATH_TARGET;
 	data->files->xpm_path[LIFEBAR] = HUD_PATH_LIFEBAR;
 	data->map->set = FALSE;
@@ -31,6 +33,7 @@ static void		ft_struct_values(t_data *data)
 	data->colors->c_color = -1;
 	data->player->x = -1;
 	data->player->y = -1;
+	data->player->fire = FALSE;
 }
 
 static int		ft_struct_failure(t_data *data, int failure)
