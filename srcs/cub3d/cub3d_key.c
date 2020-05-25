@@ -6,12 +6,20 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:13:10 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 12:55:56 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 13:55:55 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	ft_ichange_sight_level(t_data *data, int key)
+{
+	if (key == UP_ARROW)
+		data->player->sight_level += 10;
+	else if (key == DOWN_ARROW)
+		data->player->sight_level -= 10;
+	printf("data->sight %f". data->player->sight_level);
+}
 static void	ft_standard_rotation(t_data *data, int key)
 {
 	if (key == NUMPAD_2)
@@ -39,7 +47,7 @@ printf("%d\n", key);
 									|| key == RIGHT_ARROW || key == LEFT_ARROW)
 		ft_movement_dispatch(data, key);
 	else if (key == UP_ARROW || key == DOWN_ARROW)
-		
+		ft_change_shight_lever(data, key);		
 	else if (key == NUMPAD_2 || key == NUMPAD_4
 									|| key == NUMPAD_6|| key == NUMPAD_8)
 		ft_standard_rotation(data, key);
