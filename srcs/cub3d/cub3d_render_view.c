@@ -6,12 +6,13 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 20:56:12 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 21:46:25 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
+#include "libft.h"
 #include <math.h>
 
 static int	ft_get_pixel(t_data *data, t_intersect wall, int x, int y)

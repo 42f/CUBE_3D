@@ -14,8 +14,6 @@ CFLAGS		+= -Werror
 CFLAGS		+= -Wextra
 CFLAGS		+= -O3
 
-CFLAGS		+= -g
-
 ifeq ($(SOLID_SPRITE), 1)
 DEFINE_FLAGS		+= -D SOLID_SPRITE=1
 endif

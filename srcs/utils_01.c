@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 13:32:59 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/22 18:11:50 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 21:51:36 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,27 +107,27 @@ int		ft_add_shade(t_data *data, int color, double y)
 void	ft_print_error(t_data *data, int ret)
 {
 	if (ret == FALSE)
-		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 45);
+		write(1, "\033[0;93mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 45);
 	else if (ret == ERROR_MALLOC || ret == ERROR_MALLOC_IM)
-		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nMALLOC ERROR    \033[0m\n\n", 35);
 	else if (ret == ERROR_TEXTURE_IMPORT)
-		write(1, "\033[0;31mError\nCAN'T IMPORT TEXTURE  \033[0m\n\n", 40);
+		write(1, "\033[0;93mError\nCAN'T IMPORT TEXTURE  \033[0m\n\n", 40);
 	else if (ret == ERROR_MAP)
-		write(1, "\033[0;31mError\nMAP NOT CORRECT \033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nMAP NOT CORRECT \033[0m\n\n", 35);
 	else if (ret == ERROR_PLAYER)
-		write(1, "\033[0;31mError\nPLAYER ERROR    \033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nPLAYER ERROR    \033[0m\n\n", 35);
 	else if (data->map->set == ERROR)
-		write(1, "\033[0;31mError\nMAP ERROR IN CUB\033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nMAP ERROR IN CUB\033[0m\n\n", 35);
 	else if (data->map->set == ERROR_MALLOC)
-		write(1, "\033[0;31mError\nMALLOC ERROR    \033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nMALLOC ERROR    \033[0m\n\n", 35);
 	else if (ret == ERROR_MLX)
-		write(1, "\033[0;31mError\nISSUE WITH MLX  \033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nISSUE WITH MLX  \033[0m\n\n", 35);
 	else if (ret == ERROR_FILE)
-		write(1, "\033[0;31mError\nWRONG CUB  FILE \033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nWRONG CUB  FILE \033[0m\n\n", 35);
 	else if (ret == ERROR_TEXTURE)
-		write(1, "\033[0;31mError\nISSUE W/ TEXTURE\033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nISSUE W/ TEXTURE\033[0m\n\n", 35);
 	else if (ret == ERROR_EXPORT)
-		write(1, "\033[0;31mError\nCOULD NOT EXPORT\033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nCOULD NOT EXPORT\033[0m\n\n", 35);
 	else if (ret != TRUE)
-		write(1, "\033[0;31mError\nCUB FILE FAULTY \033[0m\n\n", 35);
+		write(1, "\033[0;93mError\nCUB FILE FAULTY \033[0m\n\n", 35);
 }

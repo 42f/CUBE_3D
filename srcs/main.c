@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 19:35:29 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 21:51:12 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int				main(int ac, char **av)
 	ret = FALSE;
 	if (ac == 1 || ac > 3 || (ac == 3 && ft_memcmp(av[2], "--save", 7) != 0))
 	{
-		write(1, "\033[0;31mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 46);
+		write(1, "\033[0;93mError\nUSAGE ./cub3d cub [--save] \033[0m\n\n", 46);
 		return (0);
 	}
 	data = malloc(sizeof(t_data));
