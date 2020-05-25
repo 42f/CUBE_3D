@@ -58,6 +58,7 @@ SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_dist.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_intersection.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_draw.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_view.c
+SRCS	+= $(S_DIR)/cub3d/cub3d_render_view_putimages.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_wall_intersection.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_struct.c
 SRCS	+= $(S_DIR)/parser/cubparser.c

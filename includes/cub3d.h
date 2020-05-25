@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 16:04:09 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 18:17:29 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include<stdio.h>
+
 /*
 ** CONTROLE GAME EXPERIENCE DEFINES
 */
@@ -24,12 +24,15 @@
 # define UNIT						64
 # define MINIMAL_DIST				24
 # define MOVEMENT_FACTOR			9
-# define MOUSE						FALSE
 # define HUD_PATH_GUN_0				"./assets/HUD/GUN_0.xpm"
 # define HUD_PATH_GUN_1				"./assets/HUD/GUN_1.xpm"
 # define HUD_PATH_GUN_2				"./assets/HUD/GUN_2.xpm"
 # define HUD_PATH_TARGET			"./assets/HUD/target.xpm"
 # define HUD_PATH_LIFEBAR			"./assets/HUD/life_bar.xpm"
+
+# ifndef MOUSE
+#  define MOUSE						FALSE
+# endif
 
 # ifndef SHADOW
 #  define SHADOW					FALSE
@@ -135,6 +138,10 @@
 # define FLOOR						0
 # define CEILING					1
 
+/*
+**	BMP export typedefs
+*/
+
 typedef struct	s_bmpheader
 {
 	short		bftype;
@@ -159,6 +166,10 @@ typedef struct	s_bmpinfo
 	int			biclrimportant;
 }				t_bmpinfo;
 
+/*
+**	usefull typedef for cub3d
+*/
+
 typedef	struct	s_rgb_int
 {
 	int			r;
@@ -181,6 +192,22 @@ typedef struct	s_intersect
 	int			flag;
 }				t_intersect;
 
+typedef	struct	s_ints
+{
+	int			x;
+	int			y;
+}				t_ints;
+
+/*
+**	t_data members
+*/
+
+typedef struct	s_res
+{
+	double		x;
+	double		y;
+}				t_res;
+
 typedef struct	s_sprite
 {
 	t_coord		coord;
@@ -191,22 +218,6 @@ typedef struct	s_sprite
 	int			index_out;
 	int			index_len;
 }				t_sprite;
-
-typedef	struct	s_ints
-{
-	int			x;
-	int			y;
-}				t_ints;
-
-typedef struct	s_res
-{
-	double		x;
-	double		y;
-}				t_res;
-
-/*
-**	t_data members
-*/
 
 typedef struct	s_files
 {
@@ -310,34 +321,34 @@ void			ft_init_sp(t_data *data);
 void			ft_update_sp_data(t_data *data, double alpha,
 												int index, t_intersect inter);
 void			ft_get_cell_center(t_intersect *inter);
+int				ft_render_sprite(t_data *data);
+void			ft_render_visible_sp(t_data *data);
 
 /*
 ** RENDERING VIEW
 */
 
 int				ft_cub3d(t_data *data);
-int				ft_render_view(t_data *data);
+void			ft_put_images_view(t_data *data);
 void			ft_render_bg(t_data *data, int x, int y_wallstart,
 																int y_wallend);
-int				ft_render_sprite(t_data *data);
-void			ft_render_visible_sp(t_data *data);
 int				ft_import_textures(t_data *data);
 
 void			ft_draw_map(t_data *data);
 int				ft_get_shade(double dist);
 int				ft_add_shade(t_data *data, int color, double y);
 
+/*
+** RENDER_UTILS
+*/
+
+int				ft_render_view(t_data *data);
 t_intersect		ft_find_wall(t_data *data, double alpha);
 t_intersect		ft_wall_vertical(t_data *data, double alpha_deg);
 t_intersect		ft_wall_horizontal(t_data *data, double alpha_deg);
 t_intersect		ft_sp_vertical(t_data *data, double alpha_deg, t_coord origin);
 t_intersect		ft_sp_horizontal(t_data *data, double alpha_deg,
 																t_coord origin);
-
-/*
-** RENDER_UTILS
-*/
-
 int				ft_intersect_orientation(double alpha, int orientation_flag);
 double			ft_map_alpha(double alpha);
 double			ft_convert_alpha(double alpha_deg);
