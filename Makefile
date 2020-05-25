@@ -12,8 +12,9 @@ LIBMLX		:= $(MLX_DIR)libmlx.a
 CFLAGS		+= -Wall
 CFLAGS		+= -Werror
 CFLAGS		+= -Wextra
+CFLAGS		+= -O3
+
 CFLAGS		+= -g
-CFLAGS		+= -Ofast
 
 ifeq ($(SOLID_SPRITE), 1)
 DEFINE_FLAGS		+= -D SOLID_SPRITE=1
@@ -112,4 +113,8 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.PHONY: all clean re libft fclean objets lib_fclean lib_clean
+norm	:	${SRCS} ${HEADER}
+	OUTPUT = 	'~/.norminette/norminette.rb $(SRCS)'
+	if ! echo "$OUTPUT" | grep -q "Error"; then	echo "STOP"
+
+.PHONY: all clean re libft fclean objets lib_fclean lib_clean norm

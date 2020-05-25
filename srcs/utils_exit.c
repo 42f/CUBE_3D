@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 12:29:10 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 20:10:43 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	ft_free_all_end(t_data *data, int ret)
 	i = 0;
 	if (ret == TRUE || ret == ERROR_EXPORT)
 		ft_free_textures(data);
-	if (data != NULL && data->map != NULL)
+	if (data != NULL && data->map != NULL && data->map->set != ERROR_MAP)
 		ft_free_sprites(data, data->map->sp_qty - 1);
 	if (data != NULL && data->files != NULL)
 		while (i < NBR_OF_USER_DEFINED_XPM)

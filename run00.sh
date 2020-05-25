@@ -3,8 +3,14 @@
 reset && make
 printf "\033[0;32m\n\n[STARTING]\n\n\n"
 
+for arg in "$@"
+do
+    case $arg in
+        -norm)
 printf "\033[0;93m\n\n[NORMINETTE]\033[0m\n"
 ~/.norminette/norminette.rb srcs/*.c srcs/*/*.c includes/cub3d.h
+   esac
+done
 
 printf "\033[0;93m\n\n[TESTING WRONG ARGUMENTS]\n"
 
@@ -27,6 +33,9 @@ printf "\033[0;32m NEXT : /KO_missing_map.cub = no map at all\033[0m\n"
 
 printf "\033[0;32m NEXT : /KO_open_wall_map.cub = not closed map\033[0m\n"
 ./cub3D maps/KO_open_wall_map.cub
+
+printf "\033[0;32m NEXT : /KO_space_inside_map.cub = map with spaces in the map\033[0m\n"
+./cub3D maps/KO_space_inside_map.cub
 
 printf "\033[0;32m NEXT : /KO_no_player_map.cub = map with no player inside\033[0m\n"
 ./cub3D maps/KO_no_player_map.cub

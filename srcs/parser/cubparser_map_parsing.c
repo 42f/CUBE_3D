@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 09:00:54 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 20:08:31 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 20:10:52 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@
 static void	ft_parse_line(t_data *data, char *line, int y)
 {
 	int				i;
+	int				start_flag;
 
 	i = 0;
+	start_flag = FALSE;
 	if (y >= data->map->y)
-	{
 		data->map->set = ERROR_MAP;
-		return ;
-	}
-	while (line != NULL && *line != '\0' && i < data->map->x)
+	while (line != NULL && *line != '\0' && i < data->map->x
+													&& data->map->set == FALSE)
 	{
-		if (*line == ' ')
+		if (*line == ' ' && start_flag == FALSE)
 			data->map->grid[y][i] = 0;
 		else if (*line == '0' || *line == '1' || *line == '2')
+		{
 			data->map->grid[y][i] = *line - 48;
+			start_flag = TRUE;
+		}
 		else if (*line == 'N' || *line == 'S' || *line == 'E' || *line == 'W')
 			data->map->grid[y][i] = *line;
 		else
@@ -62,7 +65,8 @@ static int	ft_parse_grid(t_data *data)
 	close(fd);
 	if (ret_gnl == ERROR)
 		return (ERROR_FILE);
-	data->map->set = TRUE;
+	if (data->map->set == FALSE)
+		data->map->set = TRUE;
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 08:57:56 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 15:33:12 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 19:35:29 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void		ft_struct_values(t_data *data)
 	data->map->set = FALSE;
 	data->map->grid = NULL;
 	data->map->sp = NULL;
+	data->map->sp_qty = 0;
 	data->res->x = -1;
 	data->res->y = -1;
 	data->colors->f_color = -1;
