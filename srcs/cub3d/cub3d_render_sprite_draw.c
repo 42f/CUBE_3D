@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 12:06:57 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/22 16:33:39 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 20:55:58 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static void		ft_put_pixel(double dist, int x, int y, int cursor)
 	color = g_data->img[SP]->data[cursor_color];
 	if (SHADOW == TRUE)
 	{
-		if (dist < 1000 && (color & BLUE) > 210)
+		if (g_data->player->fire == TRUE && dist < 1500)
+			color = ft_add_shade(g_data, color, dist * 100);
+		else if (dist < 1000 && (color & BLUE) > 210)
 			color = ft_add_shade(g_data, color, dist * 100);
 		else
 			color = ft_add_shade(g_data, color, dist);

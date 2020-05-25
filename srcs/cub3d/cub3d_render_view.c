@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 18:00:39 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/25 20:56:12 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ static int	ft_get_pixel(t_data *data, t_intersect wall, int x, int y)
 	color = data->img[wall.flag]->data[cursor];
 	if (SHADOW == TRUE)
 	{
-		if (wall.dist < 1000 && (color & BLUE) > 210)
-			color = ft_add_shade(data, color, wall.height * 10);
+		if (data->player->fire == TRUE && wall.dist < 1500)
+			color = ft_add_shade(data, color, wall.dist * 10);
+		else if (wall.dist < 1000 && (color & BLUE) > 210)
+			color = ft_add_shade(data, color, wall.dist * 10);
 		else
 			color = ft_add_shade(data, color, wall.height);
 	}
