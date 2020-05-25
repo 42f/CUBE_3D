@@ -12,6 +12,7 @@ LIBMLX		:= $(MLX_DIR)libmlx.a
 CFLAGS		+= -Wall
 CFLAGS		+= -Werror
 CFLAGS		+= -Wextra
+CFLAGS		+= -g
 CFLAGS		+= -Ofast
 
 ifeq ($(SOLID_SPRITE), 1)

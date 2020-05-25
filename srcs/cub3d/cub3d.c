@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 22:18:38 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 23:32:30 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,12 @@ static int	ft_enter_game(t_data *data)
 	int			ret;
 
 	ret = TRUE;
-	if (data->game_started == FALSE)
-	{
-		mlx_string_put(data->win->mlx_ptr, data->win->win_ptr,
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr,
 data->res->x / 2 - 70, data->res->y / 2, RED, "Press any key to start");
-		mlx_string_put(data->win->mlx_ptr, data->win->win_ptr,
+	mlx_string_put(data->win->mlx_ptr, data->win->win_ptr,
 data->res->x / 2 - 70, data->res->y / 2 + 200, RED, "Press ESC to exit game");
-		mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
+	mlx_put_image_to_window(data->win->mlx_ptr, data->win->win_ptr,
 data->img[SP]->ptr, data->res->x / 2 - 32, data->res->y / 2 + 32);
-	}
 	ret = mlx_loop(data->win->mlx_ptr);
 	return (ret);
 }
@@ -68,7 +65,7 @@ static int	ft_mlx_init(t_data *data)
 	mlx_hook(win->win_ptr, 7, (1L << 0), ft_mouse_manager, data);
 	mlx_hook(win->win_ptr, 2, (1L << 0), ft_key_hook, data);
 	mlx_hook(win->win_ptr, 17, (1L << 17), ft_escape, data);
-	mlx_hook(win->win_ptr, 12, (1L << 15), ft_render_view, data);
+	mlx_hook(win->win_ptr, 12, (1L << 15), ft_enter_game, data);
 	mlx_expose_hook(data->win->win_ptr, ft_render_view, data);
 	return (TRUE);
 }

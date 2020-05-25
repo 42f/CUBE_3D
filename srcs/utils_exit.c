@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 20:10:33 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 23:54:06 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,12 @@ int			ft_free_all(t_data *data, int ret)
 		if (data != NULL && data->win->win_ptr != NULL)
 		{
 			flag = 0;
-			while (flag <= VIEW)
-				mlx_destroy_image(data->win->mlx_ptr, data->img[flag++]->ptr);
+			while (ret != ERROR_TEXTURE_IMPORT && flag <= VIEW)
+			{
+				if (data->img[flag]->data != NULL)
+					mlx_destroy_image(data->win->mlx_ptr, data->img[flag]->ptr);
+				flag++;
+			}
 			if (data->export_flag == TRUE)
 				free(data->win->mlx_ptr);
 			else

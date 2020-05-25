@@ -6,7 +6,7 @@
 /*   By: bvalette <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 12:33:16 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/24 22:01:57 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/24 23:30:12 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <string.h>
+#include <stdio.h>
 # include <unistd.h>
 
 /*
@@ -96,7 +97,8 @@
 # define WE							3
 # define SP							4
 # define GUN 						5
-# define VIEW						6
+# define HUD						6
+# define VIEW						7
 
 /*
 ** objects flags for ft_vertical and ft_horizontal
