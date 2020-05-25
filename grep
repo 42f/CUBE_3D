@@ -1,8 +1,0 @@
-==> includes/cub3d.h <==
-void			debug_print_spdata(t_data *data);
-void			debug_printgrid(t_data *data, int **map);
-void			debug_printdata(t_data *data, int ret);
-void			debug_checkgrid(double x, double y, t_data *data, int factor);
-#endif
-
-==> . <==
