@@ -6,12 +6,11 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:13:10 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 22:24:56 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/26 08:23:39 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
 #include "mlx.h"
 
 static void	ft_standard_rotation(t_data *data, int key)
@@ -38,8 +37,9 @@ int			ft_key_release_hook(int key, t_data *data)
 	{
 		data->player->fire = FALSE;
 		mlx_do_key_autorepeaton(data->win->mlx_ptr);
+		return (ft_render_view(data));
 	}
-	return (ft_render_view(data));
+	return (TRUE);
 }
 
 int			ft_key_hook(int key, t_data *data)
@@ -52,7 +52,6 @@ int			ft_key_hook(int key, t_data *data)
 		ft_movement_dispatch(data, key);
 	else if (key == SPACE_KEY)
 	{
-		ft_putstr("\a\a\a");
 		data->player->fire = TRUE;
 		mlx_do_key_autorepeatoff(data->win->mlx_ptr);
 	}
