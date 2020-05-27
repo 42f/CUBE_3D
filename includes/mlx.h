@@ -1,1 +1,0 @@
-../minilibx-linux/mlx.h

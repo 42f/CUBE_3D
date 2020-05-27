@@ -4,18 +4,33 @@ NAME		= cub3D
 CC			= clang
 
 INC			= includes
-LIBFT_DIR	:= ./libft/
-LIBFT		:= $(LIBFT_DIR)libft.a
+
+LIBFT_DIR	:= ./libft
 
 OS			:= $(shell uname -s)
 
 ifeq ($(OS), Linux)
  MLX_DIR	:= ./minilibx-linux/
- LIBMLX		:= $(MLX_DIR)libmlx.a
+ LIBFLAGS	+= -lmlx
+ LIBFLAGS	+= -lX11 
+ LIBFLAGS	+= -lXest 
 else
  MLX_DIR	:= ./minilibx-macos/
- LIBMLX		:= $(MLX_DIR)libmlx.dylib
+ LIBFLAGS	+= -framework OpenGL 
+ LIBFLAGS	+= -framework AppKit
+ LIBFLAGS	+= -lmlx
+ LIBFLAGS	+= -lz
 endif
+
+LIBFT		:= $(LIBFT_DIR)/libft.a
+LIBMLX		:= $(MLX_DIR)libmlx.a
+
+HEADER		+=	$(LIBFT_DIR)/includes/libft.h
+HEADER		+=	$(MLX_DIR)/mlx.h
+HEADER		+=	$(INC)/cub3d.h
+
+LIBFLAGS	+= -lm 
+LIBFLAGS	+= -lmlx 
 
 CFLAGS		+= -Wall
 CFLAGS		+= -Werror
@@ -26,16 +41,8 @@ ifeq ($(SOLID_SPRITE), 1)
 DEFINE_FLAGS		+= -D SOLID_SPRITE=1
 endif
 
-ifeq ($(SOLID_SPRITE), 0)
-DEFINE_FLAGS		+= -D SOLID_SPRITE=0
-endif
-
 ifeq ($(SHADOW), 1)
 DEFINE_FLAGS		+= -D SHADOW=1
-endif
-
-ifeq ($(SHADOW), 0)
-DEFINE_FLAGS		+= -D SHADOW=0
 endif
 
 ifeq ($(DEBUG), 1)
@@ -78,10 +85,6 @@ SRCS	+= $(S_DIR)/parser/cubparser_sprite_locator.c
 
 OBJS	=	$(SRCS:.c=.o)
 
-HEADER	=	$(INC)/libft.h
-HEADER	+=	$(INC)/cub3d.h
-HEADER	+=	$(INC)/mlx.h
-
 all:  $(NAME) 
 
 FORCE:
@@ -94,7 +97,7 @@ $(LIBFT): FORCE
 
 $(NAME): $(OBJS) 
 	@echo "\n		🔗 Linking $@'s objects files...\n"
-	$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(OBJS) -lm -lbsd -lX11 -lXext $(LIBMLX) $(LIBFT) -o $(NAME) 
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(OBJS) $(LIBFLAGS) $(LIBMLX) $(LIBFT) -o $(NAME) 
 	@echo "\n		🥳  Yay  !  $@ done.\n"
 	@echo "Usage ./$@ cubfile_path [--save]\n"
 
