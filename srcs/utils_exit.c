@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 13:47:28 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 20:10:43 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/27 18:43:14 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			ft_free_all(t_data *data, int ret)
 	int	flag;
 
 	ft_print_error(data, ret);
-	if (ret != ERROR_MALLOC && ret != ERROR_FILE)
+	if (ret != ERROR_MALLOC && ret != ERROR_FILE && ret != ERROR_MAP)
 	{
 		if (data != NULL && data->win->win_ptr != NULL)
 		{
