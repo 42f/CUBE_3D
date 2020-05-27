@@ -6,8 +6,16 @@ CC			= clang
 INC			= includes
 LIBFT_DIR	:= ./libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
-MLX_DIR		:= ./minilibx-linux/
-LIBMLX		:= $(MLX_DIR)libmlx.a
+
+OS			:= $(shell uname -s)
+
+ifeq ($(OS), Linux)
+ MLX_DIR	:= ./minilibx-linux/
+ LIBMLX		:= $(MLX_DIR)libmlx.a
+else
+ MLX_DIR	:= ./minilibx-macos/
+ LIBMLX		:= $(MLX_DIR)libmlx.dylib
+endif
 
 CFLAGS		+= -Wall
 CFLAGS		+= -Werror
