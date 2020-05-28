@@ -14,10 +14,6 @@
 #define FONT_WIDTH	10
 #define	FONT_HEIGHT	20
 
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/glext.h>
-#include <GLUT/glut.h>
 
 typedef int (*func_t)();
 

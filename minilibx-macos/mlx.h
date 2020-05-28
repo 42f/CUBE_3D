@@ -46,11 +46,6 @@
 
 #define	MLX_H
 
-/*
-**  added by me from linux lib
-*/
-
-int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey)
 
 void	*mlx_init();
 /*

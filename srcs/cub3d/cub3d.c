@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:18:37 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 21:45:04 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/28 11:01:01 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,15 @@ data->img[SP]->ptr, data->res->x / 2 - 32, data->res->y / 2 + 32);
 static int	ft_mlx_init(t_data *data)
 {
 	t_window	*win;
-	t_ints		os;
+	t_ints		max;
 
 	win = data->win;
+	ft_memset(&max, 600, sizeof(t_ints));
 	win->mlx_ptr = mlx_init();
 	if (win->mlx_ptr == NULL)
 		return (ERROR_MLX);
-	mlx_get_screen_size(data->win->mlx_ptr, &os.x, &os.y);
-	os.y -= 50;
-	data->res->x = ((int)data->res->x < os.x) ? data->res->x : (double)os.x;
-	data->res->y = ((int)data->res->y < os.y) ? data->res->y : (double)os.y;
+	data->res->x = ((int)data->res->x < max.x) ? data->res->x : (double)max.x;
+	data->res->y = ((int)data->res->y < max.y) ? data->res->y : (double)max.y;
 	win->win_ptr = mlx_new_window(win->mlx_ptr, data->res->x, data->res->y,
 														data->files->cub_path);
 	if (win->win_ptr == NULL)
