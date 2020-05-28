@@ -11,15 +11,16 @@ OS			:= $(shell uname -s)
 
 ifeq ($(OS), Linux)
  MLX_DIR	:= ./minilibx-linux/
- LIBFLAGS	+= -lmlx
+ LIBFLAGS	+= -lbsd
  LIBFLAGS	+= -lX11 
- LIBFLAGS	+= -lXest 
+ LIBFLAGS	+= -lXext 
+ SRC		+= $(S_DIR)/cub3d/cub3d_mouse_mvmt_linux.c
 else
  MLX_DIR	:= ./minilibx-macos/
  LIBFLAGS	+= -framework OpenGL 
  LIBFLAGS	+= -framework AppKit
- LIBFLAGS	+= -lmlx
  LIBFLAGS	+= -lz
+ SRC		+= $(S_DIR)/cub3d/cub3d_mouse_mvmt_macos.c
 endif
 
 LIBFT		:= $(LIBFT_DIR)/libft.a
@@ -30,7 +31,6 @@ HEADER		+=	$(MLX_DIR)/mlx.h
 HEADER		+=	$(INC)/cub3d.h
 
 LIBFLAGS	+= -lm 
-LIBFLAGS	+= -lmlx 
 
 CFLAGS		+= -Wall
 CFLAGS		+= -Werror
@@ -64,7 +64,6 @@ SRCS	+= $(S_DIR)/cub3d/cub3d_export_bmp.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_import_textures.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_key.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_key_mvmt.c
-SRCS	+= $(S_DIR)/cub3d/cub3d_mouse_mvmt.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_background.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite.c
 SRCS	+= $(S_DIR)/cub3d/cub3d_render_sprite_update.c
