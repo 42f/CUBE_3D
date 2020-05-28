@@ -3,19 +3,20 @@ NAME		= cub3D
 
 CC			= clang
 
-INC			= includes
 
 LIBFT_DIR	:= ./libft
 
 OS			:= $(shell uname -s)
 
 ifeq ($(OS), Linux)
+ INC			= includes_linux
  MLX_DIR	:= ./minilibx-linux/
  LIBFLAGS	+= -lbsd
  LIBFLAGS	+= -lX11 
  LIBFLAGS	+= -lXext 
  SRC		+= $(S_DIR)/cub3d/cub3d_mouse_mvmt_linux.c
 else
+ INC			= includes_macos
  MLX_DIR	:= ./minilibx-macos/
  LIBFLAGS	+= -framework OpenGL 
  LIBFLAGS	+= -framework AppKit

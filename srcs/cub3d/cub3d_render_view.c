@@ -6,7 +6,7 @@
 /*   By: bvalette <bvalette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 10:42:23 by bvalette          #+#    #+#             */
-/*   Updated: 2020/05/25 21:46:25 by bvalette         ###   ########.fr       */
+/*   Updated: 2020/05/28 16:00:13 by bvalette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int			ft_render_view(t_data *data)
 	ret = FALSE;
 	if (data->game_started &= TRUE)
 	{
+		mlx_clear_window(data->win->mlx_ptr, data->win->win_ptr);
 		ft_render_walls(data);
 		ret = ft_render_sprite(data);
 		if (ret != TRUE)
