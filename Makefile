@@ -96,6 +96,7 @@ $(LIBFT): FORCE
 	@make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) 
+	@git submodule update --init --recursive			
 	@echo "\n		🔗 Linking $@'s objects files...\n"
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(OBJS) $(LIBFLAGS) $(LIBMLX) $(LIBFT) -o $(NAME) 
 	@echo "\n		🥳  Yay  !  $@ done.\n"
