@@ -9,14 +9,14 @@ LIBFT_DIR	:= ./libft
 OS			:= $(shell uname -s)
 
 ifeq ($(OS), Linux)
- INC			= includes_linux
+ INC		:= includes_linux
  MLX_DIR	:= ./minilibx-linux/
  LIBFLAGS	+= -lbsd
  LIBFLAGS	+= -lX11 
  LIBFLAGS	+= -lXext 
  SRC		+= $(S_DIR)/cub3d/cub3d_mouse_mvmt_linux.c
 else
- INC			= includes_macos
+ INC		:= includes_macos
  MLX_DIR	:= ./minilibx-macos/
  LIBFLAGS	+= -framework OpenGL 
  LIBFLAGS	+= -framework AppKit
@@ -85,7 +85,7 @@ SRCS	+= $(S_DIR)/parser/cubparser_sprite_locator.c
 
 OBJS	=	$(SRCS:.c=.o)
 
-all:  $(NAME) 
+all: $(NAME) 
 
 FORCE:
 
@@ -96,7 +96,6 @@ $(LIBFT): FORCE
 	@make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) 
-	@git submodule update --init --recursive			
 	@echo "\n		🔗 Linking $@'s objects files...\n"
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(OBJS) $(LIBFLAGS) $(LIBMLX) $(LIBFT) -o $(NAME) 
 	@echo "\n		🥳  Yay  !  $@ done.\n"
